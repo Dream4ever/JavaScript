@@ -17,6 +17,9 @@
         },
         "my_segmentfault": {
             "url": "https://segmentfault.com/u/samsara0511/articles/"
+        },
+        "my_index2": {
+            "url": "./index2.html"
         }
     },
     "api": {

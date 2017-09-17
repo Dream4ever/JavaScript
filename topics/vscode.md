@@ -6,7 +6,7 @@
 
 #### 快捷键
 
-VSCode 自身的功能，都可以通过编辑设置文件来进行修改，在 Windows 下的快捷键为 `Win+,`，在 Mac 下的快捷键为 `Command (⌘)+,`。
+VSCode 自身的功能，都可以通过编辑设置文件来进行修改，打开该文件的编辑界面的快捷键，在 Windows 下为 `Win+,`，在 Mac 下为 `Command (⌘)+,`。
 
 为方便起见，后文中提到 Windows/Mac 快捷键的地方，均采用下面对应关系表中，最右侧一列的简介形式：Cmd、Alt、Ctr。
 
@@ -25,6 +25,32 @@ VSCode 中的很多设置都有多个选项可供选择，在列出各个选项�
 - **选项 A**
 - 选项 B
 - 选项 C
+
+#### 编辑方式
+
+VSCode 中的自带功能均可进行修改，下图中右侧的内容为用户设置（User Settings），这里的设置会覆盖 VSCode 中的默认设置。
+
+用户设置中的内容，需按照标准的 JSON 文件的格式进行编写，即：
+
+```markdown
+"选项名称": 选项的可选值,
+// 示例
+"files.autoSave": "afterDelay",
+```
+
+如果选项的可选值仅有 true/false 两项，那么在填写选项的值时，不用加双引号；选项的可选值为数字时，也不用加双引号；只有在选项的值为其它字符串时，才需加双引号。
+
+最后一个选项之前的选项，在行末都要加上分号，这个分号必须有。
+
+如果一个选项包含多个子选项，则必须按照原来的格式，在父选项内部写上子选项的设置：
+
+```markdown
+"[markdown]":  {
+    "editor.quickSuggestions": true
+},
+```
+
+![](https://raw.githubusercontent.com/Dream4ever/Pics/master/code_user_settings.png)
 
 ### 自动保存 - `files.autoSave`
 

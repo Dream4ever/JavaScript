@@ -2,7 +2,7 @@
 
 ## 前言
 
-新生大学的[《JavaScript 编程入门》](https://web.xinshengdaxue.com/user/lessons/details/schedules?course_id=40)这门课已经结束了几个星期了，从八月初到现在（9 月 24 日），徐老师建立的微信群里有很多有价值的讨论内容，就这样让它们湮没在聊天记录中着实可惜，因此一直有这么一个想法，就是要把这些有价值的讨论内容整理记录下来。拖延了好久，今天终于动手了。由于每个人的编程水平、关注方向不同，所以这篇“新生群精华摘录”只记录了自己觉得有价值的内容。也欢迎大家 [fork 本项目](https://github.com/Dream4ever/JavaScript)，共同做出贡献，毕竟还是众人拾柴火焰高嘛~~~
+新生大学的[《JavaScript 编程入门》](https://web.xinshengdaxue.com/user/lessons/details/schedules?course_id=40)这门课已经结束了几个星期了，从八月初到现在（9 月 24 日），徐老师建立的微信群里有很多有价值的讨论内容，就这样让它们湮没在聊天记录中着实可惜，因此一直有这么一个想法，就是要把这些有价值的讨论内容整理记录下来。拖延了好久，今天终于动手了。由于每个人的编程水平、关注方向不同，所以这篇[新生群精华摘录](https://github.com/Dream4ever/JavaScript/blob/master/topics/record.md)只记录了自己觉得有价值的内容。也欢迎大家 [fork 本项目](https://github.com/Dream4ever/JavaScript)，共同做出贡献，毕竟还是众人拾柴火焰高嘛~~~
 
 ## 方法论：一法通，万法通
 
@@ -14,15 +14,25 @@
 
 有时可能不知道这个问题是怎么产生的，那就尽量回忆一下在问题出现之前做了哪些操作，都列出来。如果在问题出现之后也做了操作，那么操作的步骤和产生的结果也要记下来。
 
-详尽且准确的记录能够让别人更快、更准确地定位问题的出处。
+详尽且准确的记录能够让别人更快、更准确地定位问题的出处，而且往往会在自己准确记录的过程中就发现了问题的出处，惊不惊喜？意不意外？哈哈。
 
-## 小技巧：生活是具体的
+### 学习的“秘诀”
 
-> ↑↑↑↑上面这个标题起得不够切题，还得改改。
+相比于编码能力而言，更重要的是思考的能力。刚开始入门的时候，可以只是知其然却不知其所以然。但是想要不断进步，就一定要学着去琢磨背后的道理。正所谓一法通万法通，在学习一门编程语言的过程中，如果能在掌握好基础知识的前提下，再去探究内部的原理、思想、适用环境，并加以提炼、总结，那么在这个过程中的收获，是远比单纯的**写代码**要多得多。比如老师在某堂课上讲的[学习语法时的四大块关键内容](https://github.com/xugy0926/getting-started-with-javascript/blob/master/topics/JavaScript%E7%9A%84%E8%AF%AD%E6%B3%95%E5%AD%A6%E4%B9%A0%E6%8C%87%E5%BC%95.md#学习语法时的自问技巧)：一个数据集合，两种函数，三大结构，多种数据格式，就把JS语法中关键的部分都提炼出来了。自己在学习的时候，就可以一边学习，一边往这个知识树里不断添枝加叶。这样有目的的、系统性的学习的效果，就不会让人越学越乱，反而越学越清楚、越明白。
+
+### 读技术书的正确姿势
+
+入门的时候，不管看什么书，别贪多，也别轻易放弃，一本书从头到尾看完，比看一百本书却都没看完可能价值更大。有太多的年轻人从入门到放弃，不一定是因为不够勤奋，而是因为贪多嚼不烂。
+
+作为初学者，当你完整的从头到尾搞清楚一本书之后，形成了初步的知识体系，之后就可以快速的海量阅读了，这样就是在不断地往之前的这个知识体系中补充细节。
+
+这个时候，建议多买几本讲同一类主题的书，这样可以针对某个知识点，来看每本书中作者的理解角度。站在不同的角度上去思考这个知识点，会带来更深的理解。
+
+## 具体的学习技巧
 
 ### 学习别人的网页
 
-在 Chrome 浏览器中，打开别人的网页，然后在页面中空白区域点击右键，选择“检查”，就能够看到这个网页的源代码了，HTML、CSS、JS，尽在其中。
+在 Chrome 浏览器中，打开别人的网页，然后在页面中空白区域点击右键，选择“检查”，就能够看到这个网页的源代码了，HTML、CSS、JS，尽在其中。代码在手，天下我有。
 
 ### 关注 GitHub 项目
 
@@ -39,17 +49,53 @@
 1. 多用 `ls`（Mac）或者 `dir`（Windows）命令查看一下当前文件夹里的内容。有时候可能会新建了一个文件，编辑了半天，但是并没有保存且没注意到这个情况，然后就发现网页或者程序还是旧的样子。这个时候在终端里执行一下 `ls` 或者 `dir`，就能够看到新建的文件并不存在，这样就会意识到文件并没有保存，问题的根源就找到了。**建议**：尽量开启编辑器的自动保存功能，一方面能够保证程序的执行结果是在最新代码的基础上出来的，另一方面也能够避免忘记保存又不小心关闭了文件导致前功尽弃的情况。
 1. 多用 `pwd`（Mac）或者 `cd`（Windows）查看当前目录的完整路径，有时候进错了目录，执行程序失败还找不到原因的，可以用这个命令看看是不是进错了目录。
 
-[Windows 和 Unix 命令行对应表](https://www.lemoda.net/windows/windows2unix/windows2unix.html)：这个表里列出来了在 Windows 和 Unix 下效果相似/相同的命令。
-
 注：Unix 和 Mac 算是同根同源的兄弟，所以命令行的操作应该都是差不多的（此处未做严谨论证，了解大意即可）。
 
 延伸阅读：
 
+- [Windows 和 Unix 命令行对应表](https://www.lemoda.net/windows/windows2unix/windows2unix.html)：这个表里列出来了在 Windows 和 Unix 下效果相似/相同的命令，网上的文章有时只会列出来 Windows 或者 Unix 下的命令，这个时候就可以根据这个表来查来一套系统下对应的命令了。
 - [What's the relationship between unix, BSD, Mac OS X, linux and GNU? [closed]](https://stackoverflow.com/a/26700489/2667665)：讲述了 Unix 这个操作系统大家族的简史。
-- [Is there a beginners guide to Unix from the OS X point of view?](https://apple.stackexchange.com/questions/9973/)：介绍了几个学习 Unix/macOS 终端命令的资源，仅供参考。
-- [Windows 下的类 Unix 工具](https://alternativeto.net/software/cygwin/)：对于想要在 Windows 下体验 Unix 命令行的朋友们，可以查看左侧这个链接中提到的几款软件，比如 Cygwin、MSYS2、Babun 等。
-- [Windows 10 Installation Guide](https://msdn.microsoft.com/en-us/commandline/wsl/install_guide)：对于 Win 10 用户，还可以参考这篇文章里的方法，安装 Linux 子系统（可选择 Ubuntu），这样就能在命令行中使用 `bash` 了 —— 在命令行中输入 `bash`，就会进入其运行环境了。
+- [Is there a beginners guide to Unix from the OS X point of view?](https://apple.stackexchange.com/questions/9973/)：介绍了几个学习 Unix/macOS 终端命令的资源，可参考。
+- [Windows 下的类 Unix 工具](https://alternativeto.net/software/cygwin/)：对于想要在 Windows 下体验 Unix 命令行的朋友们，可以查看这里提到的几款软件，比如 Cygwin、MSYS2、Babun 等。
+- [Windows 10 Installation Guide](https://msdn.microsoft.com/en-us/commandline/wsl/install_guide)：对于 Win 10 用户，还可以参考这篇文章里的方法，来安装 Linux 子系统（可选择 Ubuntu），这样就能在命令行中使用 `bash` 了 —— 在命令行中输入 `bash`，就会进入其运行环境了。
+
+### 学习 Markdown
+
+建议大家都要学会 md（markdown 的缩写）。在平时工作时，用 md 来写会议记录、学习笔记、文章都很不错，通过 md 导出 html 或 pdf 格式的文件也很方便。
+
+那么 md 是如何实现呢？它的本质就是把符号变成 html。
+
+比如 md 格式的文本 `# 标题一` 就会被转换成 html 代码 `<h1>标题一</h1>`。
+
+背后其实是有一个解析器在做这个工作的，我们可以研究这个解析器，进而定制它，来得到我们想要的效果。
+
+### 定制 Markdown 的 CSS 样式
+
+想要定制 markdown 文本样式的同学，可以去参考一下 [sindresorhus/github-markdown-css](https://github.com/sindresorhus/github-markdown-css) 这个项目。
 
 ---
 
-已记录至 2017 年 08 月 10 日 08:00。
+已记录至 2017/8/11 12:23:44。
+
+
+##2017年9月1日有价值内容记录
+
+###教训
+
+何伟在用老师给的脚本的时候，将checkout命令用错，花了一个多小时才把误删的代码补完。同学们要引以为戒，要妥善保存。
+
+###关于VUE
+
+VUE不仅可以绑定数据到dom的节点，还能绑定一个函数到某个节点。vue是中国人开发的，中文文档比英文文档好。
+
+###快速打开Visual Studio 中文网址
+
+https://segmentfault.com/q/1010000005104983
+
+###nodejs在windows下的安装配置
+
+可以参考这个网址：
+http://blog.csdn.net/tyro_java/article/details/51232458
+
+2017年9月1日有价值内容记录至此，欢迎大家查遗补漏！
+

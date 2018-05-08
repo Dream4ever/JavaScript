@@ -3859,3 +3859,5 @@ function trace(o, m) {
 ```
 
 上面的函数 `trace()` 接收两个参数：一个对象和一个方法名，将指定的方法替换为一个新方法，新方法是一个 **包裹** 了原始方法的泛函数（特指一种变换，以函数为输入，输出可以是值，也可以是另一个函数）。这种动态修改现有方法的做法，可以叫做 **monkey-patching**。
+
+拓展阅读：[context to use call and apply in Javascript?](https://stackoverflow.com/questions/8659390/context-to-use-call-and-apply-in-javascript)

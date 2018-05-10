@@ -3861,3 +3861,65 @@ function trace(o, m) {
 上面的函数 `trace()` 接收两个参数：一个对象和一个方法名，将指定的方法替换为一个新方法，新方法是一个 **包裹** 了原始方法的泛函数（特指一种变换，以函数为输入，输出可以是值，也可以是另一个函数）。这种动态修改现有方法的做法，可以叫做 **monkey-patching**。
 
 拓展阅读：[context to use call and apply in Javascript?](https://stackoverflow.com/questions/8659390/context-to-use-call-and-apply-in-javascript)
+
+### `bind()` 方法
+
+该方法顾名思义，主要是用来把函数绑定到对象上。将 `bind()` 以函数 f 的方法的形式调用，并且传入一个对象 o 作为参数之后，就会返回一个新的函数 g。以方法的形式调用新的函数 g，就会将原来的函数 f 作为对象 o 的方法来调用，也就是说，对象 o 是原函数 f 的调用上下文。所有传入新函数 g 的实参都会原封不动地传入原函数 f。
+
+```javascript
+function f(y) { return this.x + y; }  // 需要绑定的函数
+var o = { x: 1 };                     // 将与之绑定的对象
+var g = f.bind(o);                    // 调用 g(x) 的时候其实在调用 o.f(x)
+g(3);                                 // => 4
+```
+
+前面刚讲过 `call()` 和 `apply()` 方法，那么想要实现同样的功能其实很简单：
+
+```javascript
+function bind(f, o) {
+  if (f.bind) return f.bind(o);
+  return function() {
+    return f.apply(o, arguments);
+  }
+}
+```
+
+在 ES5 中的 `bind()` 方法实际上并不只是把函数绑定到对象上，它还把第二个及之后的实参跟 `this` 绑定在一起。这是一种常见的函数式编程的技巧，叫做柯里化。
+
+```javascript
+var sum = function(x, y) { return (this.x || 0) + y; };
+var succ1 = sum.bind({ x: 1}, null);  // 第一个参数 { x: 1 } 作为 this 传入 sum，第二个参数 null 就是实参 x 的值
+succ1(4);                             // => 5: 4 就是实参 y 的值
+var succ2 = sum.bind(null, { x: 1});  // 第一个参数 null 作为 this 传入 sum，第二个参数 1 就是实参 x 的值
+succ2(4);                             // => 5: 4 就是实参 y 的值
+```
+
+ES3 的 `bind()` 方法可以用下面的代码进行模拟，代码中把方法保存为 `Function.prototype.bind`，这样所有的函数对象就都会继承它了。
+
+```javascript
+if (!Function.prototype.bind) {
+  Function.prototype.bind = function(o /*, args */) {
+    var self = this, boundArgs = arguments;
+
+    return function() {
+      var args = [], i;
+      for(i = 1; i< boundArgs.length; i++) args.push(boundArgs[i]);
+      for(i = 0; i< arguments.length; i++) args.push(arguments[i]);
+
+      return self.apply(o, args);
+    }
+  }
+}
+```
+
+上面自定义的 `bind()` 方法返回的函数是一个闭包，用到了外部函数内定以的 `self` 和 `boundArgs` 变量。
+
+ES5 版本 `bind()` 方法的一些特性是上面的 ES3 版本没法模拟的。
+
+首先，ES5 中的方法所返回的函数对象具有 `length` 属性，这个属性的值等于所绑定函数的形参数量减去形参数量（但不会小于 0）。
+
+其次，该方法还可以用作构造函数。如果把 `bind()` 返回的函数当作构造函数来用，那么就会忽略掉传给 `bind()` 的 `this` 的值，并将原始的函数当作构造函数来调用，同时将传入的实参原样传给原始函数。
+
+另外，该方法返回的函数没有 `prototype` 属性（普通函数的这个属性是删不掉的），那么把绑定的函数当作构造函数来用的话，所创建的对象就会继承原始函数的 `prototype` 属性。
+
+最后，跟 `instanceof` 运算符一起用的话，绑定的构造函数和未绑定的构造函数是一样的。

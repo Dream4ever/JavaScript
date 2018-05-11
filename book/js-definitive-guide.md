@@ -3842,7 +3842,7 @@ delete o.m; // 删除临时方法
 
 对于 `call()` 方法来说，第一个实参之后的所有参数都会被传入函数，`f.call(o, 1, 2)` 就向函数 `f` 中传入了两个数字 1 和 2。
 
-而对于 `apply()` 来说，所传入的实参都在第二个数组实参中：`f.apply(o, [1, 2])`。这第二个参数数组，可以是实际的数组，也可以是类数组对象。这样一来，就可以把一个函数的实参对象 `arguments` 传入 `apply()` 来让另一个函数调用。
+而对于 `apply()` 来说，所传入的实参都在第二个数组实参中：`f.apply(o, [1, 2])`。这第二个参数，可以是实际的数组，也可以是类数组对象。这样一来，就可以把一个函数的实参对象 `arguments` 传入 `apply()` 来让另一个函数调用。
 
 ```javascript
 // 把对象 o 中的方法 m 替换为另一个方法
@@ -3889,9 +3889,9 @@ function bind(f, o) {
 ```javascript
 var sum = function(x, y) { return (this.x || 0) + y; };
 var succ1 = sum.bind({ x: 1}, null);  // 第一个参数 { x: 1 } 作为 this 传入 sum，第二个参数 null 就是实参 x 的值
-succ1(4);                             // => 5: 4 就是实参 y 的值
+succ1(4);                             // => 5: 实参 y 的值为 4
 var succ2 = sum.bind(null, { x: 1});  // 第一个参数 null 作为 this 传入 sum，第二个参数 1 就是实参 x 的值
-succ2(4);                             // => 5: 4 就是实参 y 的值
+succ2(4);                             // => 5: 实参 y 的值为 4
 ```
 
 ES3 的 `bind()` 方法可以用下面的代码进行模拟，代码中把方法保存为 `Function.prototype.bind`，这样所有的函数对象就都会继承它了。

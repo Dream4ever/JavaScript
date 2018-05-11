@@ -4000,13 +4000,59 @@ function isFunction(x) {
 但是，有了 `map()` 和 `reduce()`，这个世界就清新了！
 
 ```javascript
-const sum = function(x, y) { return x + y; };
-const square = function(x) { return x * x; };
+var sum = function(x, y) { return x + y; };
+var square = function(x) { return x * x; };
 
-const data = [1, 1, 3, 5, 5];
-const mean = data.reduce(sum) / data.length;
-const deviations = data.map((x) => x - mean);
-const stddev = Math.sqrt(deviations.map(square).reduce(sum) / (data.length - 1));
+var data = [1, 1, 3, 5, 5];
+var mean = data.reduce(sum) / data.length;
+var deviations = data.map((x) => x - mean);
+var stddev = Math.sqrt(deviations.map(square).reduce(sum) / (data.length - 1));
 ```
 
 怎么样？看了上面的代码，世界是不是瞬间清晰了许多？
+
+### 高阶函数
+
+高阶函数接受函数作为参数，并且返回值也是函数。
+
+```javascript
+function not(f) {
+  return function() {
+    var result = f.apply(this, arguments);
+    return !result;
+  };
+}
+
+var even = x => x % 2 === 0;  // 判断是否为偶数
+var odd = not(even);          // 判断是否为奇数
+[1, 1, 3, 5, 5].every(odd);   // => true
+```
+
+上面的 `not()` 函数就是一个高阶函数，它接受函数作为参数，并且返回值也是函数。下面的 `mapper()` 函数也是一个高阶函数，它接受一个函数作为参数，所返回的函数会对数组中的每个元素应用所传入的函数。这里的重点，是要理解它和 `map()` 的区别：
+
+```javascript
+function mapper(f) {
+  return function(a) { return a.map(f); };
+}
+
+var increment = function(x) { return x + 1; };
+var incrementer = mapper(increment);
+incrementer([1, 2, 3]); // => [2, 3, 4]
+```
+
+下面是一个更常见的例子：接收两个函数 f 和 g，返回一个新函数，用于计算 `f(g())`：
+
+```javascript
+function compose(f, g) {
+  return function() {
+    // 只需要给 f 传一个实参，所以用 call
+    // g 需要传入实参数组，所以用 apply
+    return f.call(this, g.apply(this, arguments));
+  };
+}
+
+var square = function(x) { return x * x; };
+var sum = function(x, y) { return x + y; };
+var squareOfSum = compose(square, sum);
+squareOfSum(2, 3);  // => 25
+```

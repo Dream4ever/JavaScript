@@ -3860,7 +3860,12 @@ function trace(o, m) {
 
 上面的函数 `trace()` 接收两个参数：一个对象和一个方法名，将指定的方法替换为一个新方法，新方法是一个 **包裹** 了原始方法的泛函数（特指一种变换，以函数为输入，输出可以是值，也可以是另一个函数）。这种动态修改现有方法的做法，可以叫做 **monkey-patching**。
 
-拓展阅读：[context to use call and apply in Javascript?](https://stackoverflow.com/questions/8659390/context-to-use-call-and-apply-in-javascript)
+这两个方法的意义是什么？它俩可以自定义函数的调用上下文，也就是函数体内的 `this`。
+
+相关阅读：
+
+- [context to use call and apply in Javascript?](https://stackoverflow.com/questions/8659390/context-to-use-call-and-apply-in-javascript)
+- [The reason to use JS .call() method?](https://stackoverflow.com/questions/9001830/the-reason-to-use-js-call-method)
 
 ### `bind()` 方法
 
@@ -3920,6 +3925,12 @@ ES5 版本 `bind()` 方法的一些特性是上面的 ES3 版本没法模拟的�
 - 其次，该方法还可以用作构造函数。如果把 `bind()` 返回的函数当作构造函数来用，那么就会忽略掉传给 `bind()` 的 `this` 的值，并将原始的函数当作构造函数来调用，同时将传入的实参原样传给原始函数(TODO: 没大看懂……）。
 - 另外，该方法返回的函数没有 `prototype` 属性（普通函数的这个属性是删不掉的），那么把绑定的函数当作构造函数来用的话，所创建的对象就会继承原始函数的 `prototype` 属性。
 - 最后，跟 `instanceof` 运算符一起用的话，绑定的构造函数和未绑定的构造函数是一样的。
+
+那么，`bind()` 方法的意义又是什么呢？一方面，它可以像 `call()` 和 `apply()` 一样，自定义函数的调用上下文；另一方面，它还可以把函数柯里化！这样一来，就可以实现函数式编程了，这个概念也会在后面继续展开。
+
+相关阅读：
+
+- [JavaScript’s Apply, Call, and Bind Methods are Essential for JavaScript Professionals | JavaScript is Sexy](http://javascriptissexy.com/javascript-apply-call-and-bind-methods-are-essential-for-javascript-professionals/)
 
 ### `toString()` 方法
 

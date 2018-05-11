@@ -3988,3 +3988,25 @@ function isFunction(x) {
 ```
 
 这里所用的判断方式和前面讲到过的 `isArray()` 是一样的。
+
+## 函数式编程
+
+虽然 Javascript 并不是 Lisp 或者 Haskell 那样的函数式编程语言，但是 JavaScript 可以像操作对象那样操作函数，这就意味着也可以用 JavaScript 实现函数式编程。 ES5 中的数组方法 `map()` 和 `reduce()` 就是函数式编程风格的。
+
+### 用函数处理数组
+
+假设有一个数组，想要计算它的平均值和标准差，结构化编程的代码就不用写了，各种循环，各种流程控制，看着就头大。
+
+但是，有了 `map()` 和 `reduce()`，这个世界就清新了！
+
+```javascript
+const sum = function(x, y) { return x + y; };
+const square = function(x) { return x * x; };
+
+const data = [1, 1, 3, 5, 5];
+const mean = data.reduce(sum) / data.length;
+const deviations = data.map((x) => x - mean);
+const stddev = Math.sqrt(deviations.map(square).reduce(sum) / (data.length - 1));
+```
+
+怎么样？看了上面的代码，世界是不是瞬间清晰了许多？

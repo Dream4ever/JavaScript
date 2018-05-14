@@ -4056,3 +4056,105 @@ var sum = function(x, y) { return x + y; };
 var squareOfSum = compose(square, sum);
 squareOfSum(2, 3);  // => 25
 ```
+
+### 不完全函数
+
+函数 `f` 的 `bind()` 方法返回一个新函数，这个新函数用特点的上下文和实参调用 `f`。可以认为是把函数绑定到了对象上，并且传入一部分参数。`bind()` 方法把传入的参数放在参数列表的左侧，当然也可以放在右侧，下面的三个不完全调用值得好好地体会一下：
+
+```javascript
+function array(a, n) {
+  return Array.prototype.slice.call(a, n || 0);
+}
+
+var f = function(x, y, z) { return x * (y - z); };
+
+function partialLeft(f /*, ...*/) {
+  var args = arguments;               // => {"1":2}，外部的实参数组的值
+  return function() {
+    var a = array(args, 1);           // => 2，外部实参数组的第一个参数是函数 f，所以从第二个实参开始截取
+    a = a.concat(array(arguments));   // => 2,3,4 内部的实参数组为 {"0":3,"1":4}，将其附在外部实参数组之后
+    return f.apply(this, a);
+  }
+}
+
+partialLeft(f, 2)(3, 4);              // => -2: 2 * (3 - 4)
+
+function partialRight(f /*, ...*/) {
+  var args = arguments;               // => {"1":2}，外部的实参数组的值
+  return function() {
+    var a = array(arguments);         // => {"0":3,"1":4}，内部的实参数组的值
+    a = a.concat(array(args, 1));     // => 3,4,2 将外部实参数组附在内部实参数组之后
+    return f.apply(this, a);
+  }
+}
+
+partialRight(f, 2)(3, 4);             // => 6: 3 * (4 - 2)
+
+function partial(f /*, ...*/) {
+  var args = arguments;
+  return function() {
+    var a = array(args, 1);
+    var i = 0, j = 0;
+    for(; i < a.length; i++)
+      if (a[i] === undefined) a[i] = arguments[j++];
+    a = a.concat(array(arguments, j));// => 3,2,4
+    return f.apply(this, a);
+  }
+}
+
+partial(f, undefined, 2)(3, 4);       // => -6: 3 * (2 - 4)
+```
+
+有了不完全函数，就可以利用现有的函数来编写新的函数，是不是很好玩？
+
+```javascript
+var increment = partialLeft(sum, 1);
+var cuberoot = partialRight(Math.pow, 1/3);
+String.prototype.first = partial(String.prototype.charAt, 0);
+String.prototype.last = partial(String.prototype.slice, -1);
+```
+
+如果再把不完全函数和高阶函数合并在一起，那就更好玩了。
+
+```javascript
+var not = partialLeft(compose, function(x) { return !x; });
+var even = function(x) { return x % 2 === 0; };
+var odd = not(even);
+var isNumber = not(isNaN);
+```
+
+还可以用函数的组合和不完全函数来重新编写上面求平均数和标准差的代码：
+
+```javascript
+var data = [1, 1, 3, 5, 5];
+var sum = function(x, y) { return x + y; };
+var product = function(x, y) { return x * y; };
+var neg = partial(product, -1);
+var square = partial(Math.pow, undefined, 2);
+var sqrt = partial(Math.pow, undefined, .5);
+var reciprocal = partial(Math.pow, undefined, -1);
+
+var mean = product(reduce(data, sum), reciprocal(data.length));
+var stddev = sqrt(
+  product(
+    reduce(
+      map(
+        data,
+        compose(
+          square,
+          partial(
+            sum,
+            neg(mean)
+          )
+        ),
+        sum)
+    ),
+    reciprocal(
+      sum(
+        data.length,
+        -1
+      )
+    )
+  )
+);
+```

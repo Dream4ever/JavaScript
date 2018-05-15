@@ -4217,4 +4217,4 @@ var factorial = memorize(function(n) {
 factorial(5);
 ```
 
-TODO: 为什么上面定义的 `f` 记忆化之后，只会输出一次 `cache` 和 `key`？而 `factorial` 会输出五次？
+TODO: 为什么上面定义的 `f` 记忆化之后，只会输出一次 `cache` 和 `key`？而 `factorial` 按预期的那样输出五次？

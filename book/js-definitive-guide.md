@@ -4158,3 +4158,27 @@ var stddev = sqrt(
   )
 );
 ```
+
+前面多次用到了嵌套函数，那么嵌套函数的实参，是否就是外部函数的实参呢？看看下面两段代码：
+
+```javascript
+function a1(args) {
+  console.log(`outer args: ${args}`);   // => outer args: 1,2,3
+  return function() {
+    console.log(`inner args: ${args}`); // => outer args: 1,2,3
+  };
+}
+
+a1([1, 2, 3])([4, 5, 6]); // 嵌套函数内外的 args 相同
+
+function a2(args) {
+  console.log(`outer args: ${args}`);   // => outer args: 1,2,3
+  return function(args) {
+    console.log(`inner args: ${args}`); // => outer args: 4,5,6
+  };
+}
+
+a2([1, 2, 3])([4, 5, 6]); // 嵌套函数内外的 args 不同
+```
+
+根据上面代码的执行结果，可以判定：如果嵌套函数未传入实参，则其实参为父函数的实参列表（显然如此嘛，内部不存在的变量，肯定就要去外部找了）；如果嵌套函数传入了实参，就用传入的实参。

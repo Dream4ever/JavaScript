@@ -4182,3 +4182,39 @@ a2([1, 2, 3])([4, 5, 6]); // 嵌套函数内外的 args 不同
 ```
 
 根据上面代码的执行结果，可以判定：如果嵌套函数未传入实参，则其实参为父函数的实参列表（显然如此嘛，内部不存在的变量，肯定就要去外部找了）；如果嵌套函数传入了实参，就用传入的实参。
+
+### 记忆
+
+在前面的章节中，定义过一个会缓存每次计算结果的阶乘函数。在函数式编程中，这种缓存的技巧叫做“记忆”。下面定义的高阶函数 `memorize()` 就接受一个函数作为实参，然后返回这个函数带有记忆功能的版本：
+
+```javascript
+// 返回带记忆功能的 f
+// 只有 f 的实参数组中各元素的字符串形式全不相同时才起作用
+function memorize(f) {
+  var cache = {};       // 在闭包中缓存值
+
+  return function() {
+    // 把实参数组转换为字符串形式，用作缓存的键
+    var key = arguments.length + Array.prototype.join.call(arguments, ",");
+    if (key in cache) return cache[key];
+    return cache[key] = f.apply(this, arguments);
+  };
+}
+
+// 只会输出一次 cache 和 key 的值
+function f(num) {
+  return num === 1 ? 1 : (num * f(num - 1));
+}
+
+var g = memorize(f);
+g(5);
+
+// 会输出每一次的 cache 和 key 的值
+var factorial = memorize(function(n) {
+  return (n <= 1) ? 1 : n * factorial(n - 1);
+});
+
+factorial(5);
+```
+
+TODO: 为什么上面定义的 `f` 记忆化之后，只会输出一次 `cache` 和 `key`？而 `factorial` 会输出五次？

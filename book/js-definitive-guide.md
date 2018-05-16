@@ -3864,7 +3864,7 @@ function trace(o, m) {
 
 相关阅读：
 
-- [context to use call and apply in Javascript?](https://stackoverflow.com/questions/8659390/context-to-use-call-and-apply-in-javascript)
+- [context to use call and apply in JavaScript?](https://stackoverflow.com/questions/8659390/context-to-use-call-and-apply-in-javascript)
 - [The reason to use JS .call() method?](https://stackoverflow.com/questions/9001830/the-reason-to-use-js-call-method)
 
 ### `bind()` 方法
@@ -3991,7 +3991,7 @@ function isFunction(x) {
 
 ## 函数式编程
 
-虽然 Javascript 并不是 Lisp 或者 Haskell 那样的函数式编程语言，但是 JavaScript 可以像操作对象那样操作函数，这就意味着也可以用 JavaScript 实现函数式编程。 ES5 中的数组方法 `map()` 和 `reduce()` 就是函数式编程风格的。
+虽然 JavaScript 并不是 Lisp 或者 Haskell 那样的函数式编程语言，但是 JavaScript 可以像操作对象那样操作函数，这就意味着也可以用 JavaScript 实现函数式编程。 ES5 中的数组方法 `map()` 和 `reduce()` 就是函数式编程风格的。
 
 ### 用函数处理数组
 
@@ -4218,3 +4218,13 @@ factorial(5);
 ```
 
 TODO: 为什么上面定义的 `f` 记忆化之后，只会输出一次 `cache` 和 `key`？而 `factorial` 按预期的那样输出五次？
+
+# 类和模块
+
+在 JS 中，每个对象都是一组属性的集合，各个对象之间都是不同的。也可以为共享一批属性的一组对象定义一个“类”，类的成员，或者说实例（也就是对象）拥有自己特有的属性来保存自身的状态，还有另外一些属性用来定义自身的行为——方法，所有的实例共享这些行为。假设有一个 Complex 类，可以用来表示复数，同时还定义了复数运算。那么 Complex 的实例就可以在属性中保存复数的实部和虚部（状态），同时 Complex 类还可以定义复数的加法和乘法（行为）。
+
+在 JavaScript 中，类是通过原型继承机制实现的。如果两个对象继承了同一个原型对象的属性，那么就说它俩是同一个类的实例。
+
+如果两个类继承同一个原型，那么往往就意味着它俩是由同一个构造函数所创建和初始化的。
+
+如果熟悉 Java 或者 C++ 之类的强类型语言的话，你就会发现 JavaScript 的类和这些语言的大不一样。两者之间在语法上是有些相似，也可以用 JavaScript 来模拟经典的类的特性，但是对于 JavaScript 的类和基于原型的继承机制，以及 Java 的类和基于类的继承机制，一定要理解这两者是完全不同的。

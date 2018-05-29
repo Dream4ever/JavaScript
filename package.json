@@ -19,10 +19,9 @@
     "url": "https://github.com/Dream4ever/JavaScript/issues"
   },
   "homepage": "https://github.com/Dream4ever/JavaScript#readme",
-  "devDependencies": {
-    "vuepress": "^0.8.4"
-  },
+  "devDependencies": {},
   "dependencies": {
+    "vuepress": "^0.10.0",
     "webpack-serve": "^0.3.2"
   }
 }

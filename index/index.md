@@ -159,17 +159,17 @@ TODO
 
 ## 公司业务
 
-[公司30周年庆网页制作总结](/company-business/anniversary.md)
+[公司30周年庆网页制作总结](/business/anniversary.md)
 
-[公司周年庆网站重构笔记（已坑）](/company-business/anniversary-refactor.md)
+[公司周年庆网站重构笔记（已坑）](/business/anniversary-refactor.md)
 
-[Web端嵌入百度地图](/company-business/baidu-map.md)
+[Web端嵌入百度地图](/business/baidu-map.md)
 
-[解决跨域问题](/company-business/cross-origin.md)
+[解决跨域问题](/business/cross-origin.md)
 
-[申请免费 SSL 证书](/company-business/rms.md)
+[申请免费 SSL 证书](/business/rms.md)
 
-[阿里云企业邮箱发送邮件](/company-business/send-mail.md)
+[阿里云企业邮箱发送邮件](/business/send-mail.md)
 
 ---
 

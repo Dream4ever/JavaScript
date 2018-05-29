@@ -17,6 +17,8 @@ module.exports = {
   themeConfig: {
     repo: 'Dream4ever/JavaScript',
     editLinks: true,
+    editLinkText: '在 GitHub 上编辑此页面',
+    lastUpdated: '最后更新于',
     // 设置了上面的 repo 之后，顶部导航栏默认会显示 GitHub 链接
     // 无需在 nav 中再专门设置
     nav: [
@@ -34,7 +36,7 @@ module.exports = {
     // 在页面底部都会显示上一篇/下一篇 sidebar 中文章的链接
     sidebar: [
       {
-        title: '方法论',
+        title: 'JS 学习的方法论',
         children: getFilesPath('how-to-learn-js'),
       }, {
         title: '每周总结',
@@ -60,5 +62,8 @@ module.exports = {
       },
     ],
     sidebarDepth: 2,
+  },
+  markdown: {
+    lineNumbers: true
   }
 }

@@ -534,3 +534,13 @@ Switched to a new branch 'note'
 [remote "origin"]
   url = git@github.com:Dream4ever/JavaScript.git
 ```
+
+### 以指定的时间提交变更
+
+最简单的方法：
+
+```bash
+git commit --date="1 day ago" -m "commit message"
+```
+
+参考链接：[How do I make a Git commit in the past?](https://stackoverflow.com/questions/3895453/how-do-i-make-a-git-commit-in-the-past)

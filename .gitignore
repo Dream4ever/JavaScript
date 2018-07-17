@@ -1,4 +1,4 @@
-.vuepress/dist
 node_modules
+docs/.vuepress/dist
 yarn.lock
 yarn-error.log

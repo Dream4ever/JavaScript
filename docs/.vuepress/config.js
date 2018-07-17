@@ -1,7 +1,7 @@
 const { readdirSync } = require('fs');
 
 const getPath = path => {
-  return readdirSync(`docs/${path}`)
+  return readdirSync(`${path}`)
     .map(dir => {
       return `${path}/${dir}`;
     });
@@ -17,8 +17,8 @@ module.exports = {
   ],
   themeConfig: {
     repo: 'Dream4ever/JavaScript',
-    editLinks: true,
-    editLinkText: '在 GitHub 上编辑此页面',
+    // editLinks: true,
+    // editLinkText: '在 GitHub 上编辑此页面',
     lastUpdated: '最后更新于',
     // 设置了上面的 repo 之后，顶部导航栏默认会显示 GitHub 链接
     // 无需在 nav 中再专门设置

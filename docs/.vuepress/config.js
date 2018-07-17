@@ -1,7 +1,7 @@
 const { readdirSync } = require('fs');
 
 const getPath = path => {
-  return readdirSync(`${path}`)
+  return readdirSync(`docs/${path}`)
     .map(dir => {
       return `${path}/${dir}`;
     });

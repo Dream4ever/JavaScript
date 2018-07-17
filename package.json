@@ -4,7 +4,9 @@
   "description": "my blog",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "docs:dev": "vuepress dev docs",
+    "docs:build": "vuepress build docs"
   },
   "repository": {
     "type": "git",
@@ -21,7 +23,7 @@
   "homepage": "https://github.com/Dream4ever/JavaScript#readme",
   "devDependencies": {},
   "dependencies": {
-    "vuepress": "^0.10.0",
+    "vuepress": "^0.12.0",
     "webpack-serve": "^0.3.2"
   }
 }

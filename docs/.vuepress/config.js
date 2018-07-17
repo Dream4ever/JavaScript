@@ -1,9 +1,10 @@
 const { readdirSync } = require('fs');
-const { join } = require('path');
 
-const getFilesPath = path => {
-  const filesPath = readdirSync(join('.', path));
-  return filesPath.map(filePath => join(path, filePath));
+const getPath = path => {
+  return readdirSync(`docs/${path}`)
+    .map(dir => {
+      return `${path}/${dir}`;
+    });
 }
 
 module.exports = {
@@ -22,10 +23,10 @@ module.exports = {
     // 设置了上面的 repo 之后，顶部导航栏默认会显示 GitHub 链接
     // 无需在 nav 中再专门设置
     nav: [
-      {
-        text: '博客',
-        link: '/index/index',
-      },
+      // {
+      //   text: '博客',
+      //   link: '/index/index',
+      // },
     ],
     // 在这里设置的 sidebar 的属性
     // 适用于所有页面
@@ -36,29 +37,44 @@ module.exports = {
     // 在页面底部都会显示上一篇/下一篇 sidebar 中文章的链接
     sidebar: [
       {
-        title: 'JS 学习的方法论',
-        children: getFilesPath('how-to-learn-js'),
-      }, {
+        title: '学习笔记',
+        children: getPath('book'),
+      },
+      {
+        title: 'JS学习方法论',
+        children: getPath('how-to-learn-js'),
+      },
+      {
         title: '每周总结',
-        children: getFilesPath('weekly-review'),
-      }, {
+        children: getPath('weekly-review'),
+      },
+      {
         title: '系列课程之一 - 入门',
-        children: getFilesPath('js-elementary'),
-      }, {
+        children: getPath('js-elementary'),
+      },
+      {
         title: '系列课程之二 - 进阶',
-        children: getFilesPath('js-advanced'),
-      }, {
+        children: getPath('js-advanced'),
+      },
+      {
         title: 'WebApp 项目学习笔记',
-        children: getFilesPath('webapp'),
-      }, {
+        children: getPath('webapp'),
+      },
+      {
         title: '系列课程之三 - Vue.js 进阶',
-        children: getFilesPath('vue-advanced'),
-      }, {
+        children: getPath('vue-advanced'),
+      },
+      {
         title: '公司业务',
-        children: getFilesPath('business'),
-      }, {
+        children: getPath('business'),
+      },
+      {
         title: '服务器配置',
-        children: getFilesPath('server-configuration'),
+        children: getPath('server-configuration'),
+      },
+      {
+        title: 'Git',
+        children: getPath('git'),
       },
     ],
     sidebarDepth: 2,

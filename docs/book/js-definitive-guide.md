@@ -3361,7 +3361,7 @@ Array.prototype.filter.call(s,
 
 ## 函数定义
 
-定义函数的标准格式： `function funcName() {}`，其中 `funcName` 是函数名称标识符。
+定义函数的标准格式：`function funcName() {}`，其中 `funcName` 是函数名称标识符。
 
 ```javascript
 // 函数定义表达式可以包含名称，从而可以定义递归调用的函数

@@ -929,7 +929,7 @@ console.log(delete this.fakevar2); // => true
 
 ES 规范强制规定全局变量是全局对象的属性。虽然对局部变量没有做类似的规定，但是可以将局部变量理解为跟函数调用相关的某个对象的属性。在 ES5 中，该对象称为“声明上下文对象”（declarative environment record）。
 
-JavaScript 中可以用 `this` 关键字来引用全局对象，但没有方法引用存放局部变量的对象。这种存放局部变量的对象所特有的性质，是对我们不可见的内部实现。但是！可以通过闭包在局部变量的作用域之外使用它，具体请看 [MDN 上关于闭包的文档](https://github.com/Dream4ever/JavaScript/blob/master/topics/mdn-closure.md)。
+JavaScript 中可以用 `this` 关键字来引用全局对象，但没有方法引用存放局部变量的对象。这种存放局部变量的对象所特有的性质，是对我们不可见的内部实现。但是！可以通过闭包在局部变量的作用域之外使用它，具体请看 [MDN 上关于闭包的文档](https://github.com/Dream4ever/JavaScript/blob/master/docs/closure/mdn-closure.md)。
 
 ### 作用域链
 

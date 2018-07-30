@@ -140,7 +140,7 @@ res.json({ code: code });
 
 iPhone 真机测试时，跨域请求一直是 pending 状态。手机通过 PC 的网络作为代理联网的话，这个问题就又消失了。安卓真机测试了几台，也都没有这个问题。
 
-临时的解决方案：先将服务端放到和客户端相同的域名下，还真 OK 了！注意，这种情况下， Node.js 服务端是参考下面的方式配置的。后来解决了跨域问题之后（看[另一篇文章](https://github.com/Dream4ever/JavaScript/blob/master/company-business/cross-origin.md)），就不需要用 IISNode 管理 Node.js 服务了，又可以一门心思写 JS 不用管 IIS 了，哈哈。
+临时的解决方案：先将服务端放到和客户端相同的域名下，还真 OK 了！注意，这种情况下， Node.js 服务端是参考下面的方式配置的。后来解决了跨域问题之后（看[另一篇文章](https://github.com/Dream4ever/JavaScript/blob/master/docs/company-business/cross-origin.md)），就不需要用 IISNode 管理 Node.js 服务了，又可以一门心思写 JS 不用管 IIS 了，哈哈。
 
 ### IISNode 管理 Node.js 服务
 
@@ -188,7 +188,7 @@ IIS 提供了虚拟目录的功能，可以将网站物理路径之外的目录�
 
 ### 解决跨域问题（上面的修改就可以撤回了）
 
-见文章：[解决跨域问题](https://github.com/Dream4ever/JavaScript/blob/master/company-business/cross-origin.md)。
+见文章：[解决跨域问题](https://github.com/Dream4ever/JavaScript/blob/master/docs/company-business/cross-origin.md)。
 
 ### 申请免费 SSL 证书
 

@@ -2,7 +2,7 @@
 
 ## 前言
 
-新生大学的[《JavaScript 编程入门》](https://web.xinshengdaxue.com/user/lessons/details/schedules?course_id=40)这门课已经结束了几个星期了，从八月初到现在（9 月 24 日），徐老师建立的微信群里有很多有价值的讨论内容，就这样让它们湮没在聊天记录中着实可惜，因此一直有这么一个想法，就是要把这些有价值的讨论内容整理记录下来。拖延了好久，今天终于动手了。由于每个人的编程水平、关注方向不同，所以这篇[新生群精华摘录](https://github.com/Dream4ever/JavaScript/blob/master/docs/topics/record.md)只记录了自己觉得有价值的内容。也欢迎大家 [fork 本项目](https://github.com/Dream4ever/JavaScript)，共同做出贡献，毕竟还是众人拾柴火焰高嘛~~~
+新生大学的[《JavaScript 编程入门》](https://web.xinshengdaxue.com/user/lessons/details/schedules?course_id=40)这门课已经结束了几个星期了，从八月初到现在（9 月 24 日），徐老师建立的微信群里有很多有价值的讨论内容，就这样让它们湮没在聊天记录中着实可惜，因此一直有这么一个想法，就是要把这些有价值的讨论内容整理记录下来。拖延了好久，今天终于动手了。由于每个人的编程水平、关注方向不同，所以这篇[新生群精华摘录](https://hewei.in/essay/record.html)只记录了自己觉得有价值的内容。也欢迎大家 [fork 本项目](https://github.com/Dream4ever/JavaScript)，共同做出贡献，毕竟还是众人拾柴火焰高嘛~~~
 
 ## 方法论：一法通，万法通
 

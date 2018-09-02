@@ -23,7 +23,7 @@
   "homepage": "https://github.com/Dream4ever/JavaScript#readme",
   "devDependencies": {},
   "dependencies": {
-    "vuepress": "^0.13.0",
+    "vuepress": "^0.14.2",
     "webpack-serve": "^0.3.2"
   }
 }

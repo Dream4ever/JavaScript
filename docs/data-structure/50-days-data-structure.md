@@ -78,7 +78,7 @@ const obj = { a: '1' };
 print(filter(obj, obj => obj.a)); // => []
 
 const func = (a, b) => a > b
-print(filter(func, func => func.length)) // => 会报错
+print(filter(func, func => func.length)) // => 会报错 => 代码需更正
 ```
 
 从上面的执行结果可以看到，这个函数不仅能对数组进行过滤，还可以对字符串进行过滤。想起来犀牛书里面说的了么？“字符串在某种情况下也可以看成是字符数组”，这个时候是不是有了更深的理解呢？

@@ -20,7 +20,7 @@
 
 ## 系统配置
 
-参考 [How to Run ‘sudo’ Command Without Entering a Password in Linux](https://www.tecmint.com/run-sudo-command-without-password-linux/) 这篇文章，执行命令 `sudo visudo` 编辑相关文件，在文件内插入下面这行，就可以让新建的 `www` 账户在执行 `sudo` 开头的命令时不再需要输入密码。
+参考 [How to Run ‘sudo’ Command Without Entering a Password in Linux](https://www.tecmint.com/run-sudo-command-without-password-linux/) 这篇文章，执行命令 `sudo visudo`，在打开的文件内插入下面这行，就可以让新建的 `www` 账户在执行 `sudo` 开头的命令时不再需要输入密码。
 
 ```bash
 www ALL=(ALL) NOPASSWD: ALL

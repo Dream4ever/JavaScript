@@ -43,6 +43,14 @@ VMWare 默认会为虚拟机系统通过 DHCP 分配动态 IP，日常使用肯�
 
 同时也要为物理机指定静态 IP，除了 IP 不同，其余的子网掩码、默认网关和 DNS 都和虚拟机中设置成一样的就行。
 
+最后再禁止 root 用户的 SSH 登录，以提升服务器安全性。
+
+```bash
+$ sudo vi /etc/ssh/sshd_config
+# 输入/PermitRoot然后按下回车，编辑器就会定位至PermitRoot所在行的行首。如果行首有注释符号#，则按下Shift+x删除。然后光标移至后面的单词yes的首字母y上，输入cw删除该单词，再输入no，然后按下Esc结束编辑，最后输入:x保存并退出。
+$ sudo systemctl reload sshd
+```
+
 ---
 
 ## 备用资料

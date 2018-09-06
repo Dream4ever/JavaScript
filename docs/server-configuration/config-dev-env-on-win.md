@@ -6,7 +6,7 @@
 
 下载 CentOS 7 的 DVD ISO 镜像，在 VMware Player 中安装。
 
-安装时按照 [CentOS 7.3 安装指南](https://linux.cn/article-8048-1.html) 这篇文章中方法，设置时区及时间，开启以太网，然后直接使用最小安装（Minimal Install）即可，无需做教程中的其余操作。
+安装时按照 [CentOS 7.3 安装指南](https://linux.cn/article-8048-1.html) 这篇文章中方法，设置时区及时间，开启有线网，然后直接使用最小安装（Minimal Install）即可，无需做教程中的其余操作。
 
 在安装的过程中，为 `root` 账户设置密码，并且新建一个拥有管理员权限的账户 `www`，此处为方便记忆，两个账户设置了相同的密码。
 

@@ -12,12 +12,6 @@
 
 系统安装完成后，在 VMWare Player 窗口下方，点击“已安装完成”，就会自动安装 VMWare Tools。
 
-## 系统更新
-
-以 `root` 账户登录。执行 `sudo yum update` 升级系统中的软件。在提示需要做出选择的地方，全部输入 `y` 然后回车即可。
-
-升级完软件之后，再输入 `sudo init 6`，升级系统内核。
-
 ## 系统配置
 
 参考 [How to Run ‘sudo’ Command Without Entering a Password in Linux](https://www.tecmint.com/run-sudo-command-without-password-linux/) 这篇文章，执行命令 `sudo visudo`，在打开的文件内插入下面这行，就可以让新建的 `www` 账户在执行 `sudo` 开头的命令时不再需要输入密码。
@@ -25,6 +19,12 @@
 ```bash
 www ALL=(ALL) NOPASSWD: ALL
 ```
+
+## 系统更新
+
+以 `root` 账户登录。执行 `sudo yum update` 升级系统中的软件。在提示需要做出选择的地方，全部输入 `y` 然后回车即可。
+
+升级完软件之后，再输入 `sudo init 6`，升级系统内核。
 
 ---
 

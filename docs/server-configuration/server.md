@@ -740,6 +740,48 @@ $ sudo vi /etc/nginx/nginx.conf
 # 猜测是因为没有 nginx 这个用户，所以才导致此问题
 ```
 
+### 开启 HTTPS
+
+在阿里云控制台的“SSL 证书”业务中，在“我的订单”界面中，点击“下载”，就会转到证书的下载及配置教程页面。捣鼓了半天，把 http 自动重定向到 https 的功能也完成了，配置文件如下。
+
+注：用的 vue-press 搭建的博客，所以 `location /` 那里的 `root` 指令写成了一大串，并且覆盖了外部 `server` 的 `root` 指令的内容。
+
+```bash
+server {
+    listen       80 default_server;
+    listen       [::]:80 default_server;
+    return  301  https://$host$request_uri;
+}
+
+server {
+    listen       443;
+    listen       [::]:443 ipv6only=on;
+    server_name  localhost;
+    root /home/www/projects;
+
+    ssl on;
+    ssl_certificate "/etc/nginx/cert/214542304470487.pem";
+    ssl_certificate_key "/etc/nginx/cert/214542304470487.key";
+    ssl_session_timeout 5m;
+    ssl_ciphers ECDHE-RSA-AES128-GCM-SHA256:ECDHE:ECDH:AES:HIGH:!NULL:!aNULL:!MD5:!ADH:!RC4;
+    ssl_protocols TLSv1 TLSv1.1 TLSv1.2;
+    ssl_prefer_server_ciphers on;
+
+    location / {
+        root /home/www/projects/javascript/docs/.vuepress/dist/;
+        index index.html;
+    }
+
+    error_page 404 /404.html;
+        location = /40x.html {
+    }
+
+    error_page 500 502 503 504 /50x.html;
+        location = /50x.html {
+    }
+}
+```
+
 ## 配置 GitHub SSH Key
 
 在参考着[使用pm2部署你的项目防止过劳死](http://xugaoyang.com/post/5aa3a4d0b1745b11c007ffd6)这篇文章，配置服务器到 GitHub 的 SSH 密钥时，发现 `ssh -T git@github.com` 这个命令会失败，本机其实也会失败。搜索了一番之后发现，需要先执行 `ssh-keyscan -t rsa github.com >> ~/.ssh/known_hosts` 这个命令，然后再执行 `ssh -T` 这个，才能成功访问 GitHub。

@@ -692,13 +692,13 @@ $ nvm install node
 
 ```bash
 $ sudo yum install epel-release
-$ sudo yum install nginx
-$ sudo systemctl start nginx
+$ sudo yum install -y nginx # 所有的提问都自动回答 yes
+$ sudo service nginx start
 # 上面这一步执行完之后，有时会提示下面的错误，即使重启也不行
 # Job for nginx.service failed because the control process exited with error code. See "systemctl status nginx.service" and "journalctl -xe" for details.
-$ sudo systemctl enable nginx
+$ sudo service enable nginx
 # 也可以用下面这个命令启动nginx，会输出详细的错误信息
-$ sudo nginx -t
+$ sudo /usr/sbin/nginx -t
 ```
 
 然后在浏览器中访问服务器的IP或者域名，如果显示 Nginx 相关的提示信息，说明运行成功。
@@ -710,7 +710,7 @@ $ sudo nginx -t
 ### Nginx 重要路径
 
 - 默认的服务器根目录：`/usr/share/nginx/html`，这个路径要去 `/etc/nginx/conf.d/default.conf` 这个配置文件中修改。
-- Server Block 配置文件（类似于Apache中的虚拟主机）：在 `/etc/nginx/default.d` 这个目录中新建扩展名为 `.conf` 的文件，下次 Nginx 启动的时候就会自动加载这些文件。
+- Server Block 配置文件（类似于Apache中的虚拟主机）：在 `/etc/nginx/conf.d` 这个目录中新建扩展名为 `.conf` 的文件，下次 Nginx 启动的时候就会自动加载这些文件。
 - Nginx 的全局配置文件：该文件路径为 `/etc/nginx/nginx.conf`。
 
 ### 映射网站目录
@@ -720,24 +720,66 @@ $ sudo nginx -t
 ```bash
 $ sudo vi /etc/nginx/nginx.conf
 # 然后将 location / 字段修改为如下内容
-        location / {
-                proxy_pass http://localhost:3000;
-                proxy_http_version 1.1;
-                proxy_set_header Upgrade $http_upgrade;
-                proxy_set_header Connection 'upgrade';
-                proxy_set_header Host $host;
-                proxy_cache_bypass $http_upgrade;
-        }
+  location / {
+    proxy_pass http://localhost:3000;
+    proxy_http_version 1.1;
+    proxy_set_header Upgrade $http_upgrade;
+    proxy_set_header Connection 'upgrade';
+    proxy_set_header Host $host;
+    proxy_cache_bypass $http_upgrade;
+  }
 ```
 
 ### 403 Forbidden
 
-在配置Nginx代理静态资源的时候，发现访问网站时提示 403 Forbidden，上网查了查，试了各种方法，最后发现需要修改执行Nginx的用户。
+在配置 Nginx 代理静态资源的时候，发现访问网站时提示 403 Forbidden，上网查了查，试了各种方法，最后发现需要修改执行 Nginx 的用户。
 
 ```bash
 $ sudo vi /etc/nginx/nginx.conf
 # 然后将配置文件中的 use nginx 改为 use www 重启 Nginx 之后就可以正常访问了
-# 猜测是因为之前配置过系统权限，所以才导致此问题
+# 猜测是因为没有 nginx 这个用户，所以才导致此问题
+```
+
+### 开启 HTTPS
+
+在阿里云控制台的“SSL 证书”业务中，在“我的订单”界面中，点击“下载”，就会转到证书的下载及配置教程页面。捣鼓了半天，把 http 自动重定向到 https 的功能也完成了，配置文件如下。
+
+注：用的 vue-press 搭建的博客，所以 `location /` 那里的 `root` 指令写成了一大串，并且覆盖了外部 `server` 的 `root` 指令的内容。
+
+```bash
+server {
+    listen       80 default_server;
+    listen       [::]:80 default_server;
+    return  301  https://$host$request_uri;
+}
+
+server {
+    listen       443;
+    listen       [::]:443 ipv6only=on;
+    server_name  localhost;
+    root /home/www/projects;
+
+    ssl on;
+    ssl_certificate "/etc/nginx/cert/214542304470487.pem";
+    ssl_certificate_key "/etc/nginx/cert/214542304470487.key";
+    ssl_session_timeout 5m;
+    ssl_ciphers ECDHE-RSA-AES128-GCM-SHA256:ECDHE:ECDH:AES:HIGH:!NULL:!aNULL:!MD5:!ADH:!RC4;
+    ssl_protocols TLSv1 TLSv1.1 TLSv1.2;
+    ssl_prefer_server_ciphers on;
+
+    location / {
+        root /home/www/projects/javascript/docs/.vuepress/dist/;
+        index index.html;
+    }
+
+    error_page 404 /404.html;
+        location = /40x.html {
+    }
+
+    error_page 500 502 503 504 /50x.html;
+        location = /50x.html {
+    }
+}
 ```
 
 ## 配置 GitHub SSH Key

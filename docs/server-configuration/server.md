@@ -855,7 +855,90 @@ $ sudo init 6
 # 输入上面的命令后直接就自动重启了，怎么给人的感觉是没有升级内核呢？
 ```
 
-## 相关资料
+### 相关资料
 
 - Windows 远程访问 CentOS 的方案：[Remote access to CentOS 7 from Windows 10](https://community.spiceworks.com/topic/2040456-remote-access-to-centos-7-from-windows-10)
 - Linux 下格式化硬盘的方案：[Linux Hard Disk Format Command](https://www.cyberciti.biz/faq/linux-disk-format/)
+
+## 安装配置 docker
+
+### 安装 docker
+
+先卸载系统中可能的旧版 docker。
+
+```shell
+$ sudo yum remove docker \
+                  docker-client \
+                  docker-client-latest \
+                  docker-common \
+                  docker-latest \
+                  docker-latest-logrotate \
+                  docker-logrotate \
+                  docker-selinux \
+                  docker-engine-selinux \
+                  docker-engine
+```
+
+然后配置安装及更新 docker 所需的 repository。
+
+```shell
+$ sudo yum install -y yum-utils \
+  device-mapper-persistent-data \
+  lvm2
+
+$ sudo yum-config-manager \
+    --add-repo \
+    https://download.docker.com/linux/centos/docker-ce.repo
+```
+
+然后开始安装 docker。
+
+```shell
+$ sudo yum install docker-ce
+```
+
+安装过程中，需要确认一个 GPG key，值应该为 `060A 61C5 1B55 8A7F 742B 77AA C52F EB6B 621E 9F35`。如果不是这个值，则说明安装程序被篡改了。
+
+安装完成之后，启动 docker，并运行一个镜像，验证 docker 是否可用。
+
+```shell
+$ sudo systemctl start docker
+$ sudo docker run hello-world
+```
+
+### 配置用户组及用户
+
+```shell
+# 创建用户组 docker
+$ sudo groupadd docker
+# 将当前用户加入到 docker 这个组中
+$ sudo usermod -aG docker $USER
+# 在下面的文件中，能够看到所有的用户组及各组中的用户
+$ cat /etc/group
+```
+
+创建完用户组并添加当前非 root 用户之后，注销当前用户并重新登录，然后执行下面的命令，测试用户权限是否已更新。
+
+```shell
+$ docker run hello-world
+```
+
+如果能看到相关的输出结果，就说明用户权限已成功更新。
+
+### 配置开机启动
+
+```shell
+$ sudo systemctl enable docker
+```
+
+### 配置监听连接
+
+为了安全起见，docker daemon（守护进程）默认只监听本机的 UNIX socket（UNIX 套接字，同一台主机内的进程间通信）。
+
+> 待完成
+
+### 相关资料
+
+- docker 安装流程：[Get Docker CE for CentOS](https://docs.docker.com/install/linux/docker-ce/centos/)
+- 在 Linux 系列的系统中，安装完 docker 之后所需做的配置：[Post-installation steps for Linux](https://docs.docker.com/install/linux/linux-postinstall/)
+- 介绍 docker daemon 所默认监听的连接：[Unix域套接字（Unix Domain Socket）介绍](https://blog.csdn.net/Roland_Sun/article/details/50266565)

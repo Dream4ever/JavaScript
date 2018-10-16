@@ -813,3 +813,47 @@ ln -s /usr/local/bin/nmon_x86_64_centos7 /usr/local/bin/nmon
 # tidy up tmp
 rm -f nmon_*
 ```
+
+---
+
+# 服务器配置笔记 v3.0
+
+## 安装 CentOS
+
+整体流程，参考[CentOS 7.3 安装指南](https://www.aliyun.com/jiaocheng/143753.html)这篇教程即可。
+
+需要注意的是，如果安装 CentOS 的硬盘，之前已经装过系统，需要在 CentOS 的 GUI 安装界面，用快捷键 `Ctrl+Alt+F2` 调出一个新的终端窗口，用下面的命令格式化硬盘，然后才可安装。
+
+
+```shell
+# 列出所有磁盘，会包含 U 盘，注意磁盘名称不要看错
+$ fdisk -l
+# 用 fdisk 命令开始编辑本机硬盘
+# 输入该命令后，会进入编辑界面
+$ fdisk /dev/sda
+# 用 d 指令删除磁盘上的分区，此处不详述
+$ d
+```
+
+删除完分区之后，直接用快捷键 `Ctrl+Alt+Del` 重启系统，重新进入 CentOS 的 GUI 安装界面，继续安装。
+
+默认安装语言可以选择中文，这样就会自动将时区设置为上海。
+
+安装环境选择“带 GUI 的服务器”即可，附加组件这个时候先不选。
+
+安装时尽量把网线插上，在网络那里，需要手动启用本机网络才行，因为默认是禁用的。
+
+开始安装之后，还要给 root 账户设置密码。为安全起见，还要新建一个具有 root 权限的账户，也设置安全性较高的密码。
+
+安装完成之后，按照提示重启系统，并按照上面教程链接里最后的更新部分，更新当前系统。
+
+```shell
+# 升级所有系统默认安装的软件包
+$ sudo yum update
+# 重启后再升级系统内核
+$ sudo init 6
+```
+
+## 相关资料
+
+Windows 远程访问 CentOS 的方案：[Remote access to CentOS 7 from Windows 10](https://community.spiceworks.com/topic/2040456-remote-access-to-centos-7-from-windows-10)

@@ -937,8 +937,43 @@ $ sudo systemctl enable docker
 
 > 待完成
 
+### 配置镜像加速器
+
+访问[容器镜像服务](https://cr.console.aliyun.com/)这个页面，登陆之后，点击左侧的“镜像加速器”，然后查看对应于 CentOS 的加速器配置方法，照着设置即可。
+
+## 安装配置 GitLab
+
+### 安装 GitLab
+
+根据[gitlab/gitlab-ce](https://hub.docker.com/r/gitlab/gitlab-ce/)页面上所给出的指令，下载 GitLab CE 版本的镜像。
+
+```shell
+$ docker pull gitlab/gitlab-ce
+```
+
+在前面配置好阿里云的镜像加速器之后，镜像的下载速度应当是非常快的。
+
+然后用下面的命令安装 GitLab。
+
+```shell
+sudo docker run --detach \
+    --hostname gitlab.example.com \
+    --publish 443:443 --publish 8080:80 --publish 2222:22 \
+    --name gitlab \
+    --restart always \
+    --volume /srv/gitlab/config:/etc/gitlab \
+    --volume /srv/gitlab/logs:/var/log/gitlab \
+    --volume /srv/gitlab/data:/var/opt/gitlab \
+    gitlab/gitlab-ce:latest
+```
+
+注意这里对内的 80 和 22 端口都该用 8080 和 2222 了，因为用默认端口的话，会报端口占用。
+
+由于 GitLab 的安装比较耗时，在低配置机器，特别是在机械硬盘上安装的话，速度尤其慢。可以在命令行输入 `docker logs -f gitlab`，来查看 `gitlab` 这个容器的终端输出。
+
 ### 相关资料
 
 - docker 安装流程：[Get Docker CE for CentOS](https://docs.docker.com/install/linux/docker-ce/centos/)
 - 在 Linux 系列的系统中，安装完 docker 之后所需做的配置：[Post-installation steps for Linux](https://docs.docker.com/install/linux/linux-postinstall/)
 - 介绍 docker daemon 所默认监听的连接：[Unix域套接字（Unix Domain Socket）介绍](https://blog.csdn.net/Roland_Sun/article/details/50266565)
+- 用 docker 安装 GitLab 时 22端口被占用的解决办法：[用docker安装gitlab ssh总是端口不能用](https://www.oschina.net/question/90201_2280758)

@@ -856,4 +856,5 @@ $ sudo init 6
 
 ## 相关资料
 
-Windows 远程访问 CentOS 的方案：[Remote access to CentOS 7 from Windows 10](https://community.spiceworks.com/topic/2040456-remote-access-to-centos-7-from-windows-10)
+- Windows 远程访问 CentOS 的方案：[Remote access to CentOS 7 from Windows 10](https://community.spiceworks.com/topic/2040456-remote-access-to-centos-7-from-windows-10)
+- Linux 下格式化硬盘的方案：[Linux Hard Disk Format Command](https://www.cyberciti.biz/faq/linux-disk-format/)

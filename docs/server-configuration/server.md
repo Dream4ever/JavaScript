@@ -977,4 +977,4 @@ sudo docker run --detach \
 - 在 Linux 系列的系统中，安装完 docker 之后所需做的配置：[Post-installation steps for Linux](https://docs.docker.com/install/linux/linux-postinstall/)
 - 介绍 docker daemon 所默认监听的连接：[Unix域套接字（Unix Domain Socket）介绍](https://blog.csdn.net/Roland_Sun/article/details/50266565)
 - 在 docker 中安装 GitLab 的官方文档：[GitLab Docker images](https://docs.gitlab.com/omnibus/docker/)
-- 用 docker 安装 GitLab 时 22端口被占用的解决办法：[用docker安装gitlab ssh总是端口不能用](https://www.oschina.net/question/90201_2280758)
+- 用 docker 安装 GitLab 时 22 端口被占用的解决办法：[用docker安装gitlab ssh总是端口不能用](https://www.oschina.net/question/90201_2280758)

@@ -855,6 +855,10 @@ $ sudo init 6
 # 输入上面的命令后直接就自动重启了，怎么给人的感觉是没有升级内核呢？
 ```
 
+## 配置 CentOS
+
+如何查看 CentOS 中手动安装的包？请看这里：[How to List Manually Installed Packages on CentOS/RHEL](https://www.webhostinghero.com/blog/how-to-list-manually-installed-packages-on-centosrhel/)。只尝试了直接查看数据库的方法，之后可以再尝试其它方法。
+
 ### 相关资料
 
 - Windows 远程访问 CentOS 的方案：[Remote access to CentOS 7 from Windows 10](https://community.spiceworks.com/topic/2040456-remote-access-to-centos-7-from-windows-10)

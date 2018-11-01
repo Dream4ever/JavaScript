@@ -6,7 +6,7 @@
 
 配置好之后，下载 MongoDB 的镜像至本地。
 
-基于 macOS 本身的问题，需要用下面的命令，将 MongoDB 的数据文件映射至物理机：
+由于 macOS 自身的问题，需要用下面的命令，将 MongoDB 的数据文件映射至物理机：
 
 ```shell
 $ docker run --name mongo-for-parse -v /User/XX/Code/mongodb:/data/db -p 27017:27017 -d mongo

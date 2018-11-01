@@ -44,7 +44,7 @@ $ npm start
 ## 参考资料
 
 - [Docker 微服务教程 - 阮一峰的网络日志](http://www.ruanyifeng.com/blog/2018/02/docker-wordpress-tutorial.html): 介绍了 Docker 的常用命令
-- [Setup a dockerized Parse Server in minutes](https://codeburst.io/setup-a-dockerized-parse-server-in-minutes-9e3001324c9c)
-- [parse-community/parse-server](https://github.com/parse-community/parse-server)
 - [mongo | Docker Documentation](https://docs.docker.com/samples/library/mongo/)
 - [Connecting to mongo docker container from host](https://stackoverflow.com/questions/33336773/connecting-to-mongo-docker-container-from-host): 里面还提到了如何在其它的容器中连接在容器中的 MongoDB
+- [Parse Server Guide | Parse](https://docs.parseplatform.org/parse-server/guide/)
+- [Setup a dockerized Parse Server in minutes](https://codeburst.io/setup-a-dockerized-parse-server-in-minutes-9e3001324c9c)

@@ -1,5 +1,7 @@
 # Parse-Server 配置笔记
 
+> 注：不管是在物理机中部署 Parse-Server，还是在 Docker 中部署 Parse-Server，都可以调用 Docker 中的 MongoDB，所以该笔记的第一步，就是在 Docker 中安装 MongoDB。
+
 ## 先在 Docker 中安装 MongoDB
 
 记得先配置 Docker 的加速镜像。

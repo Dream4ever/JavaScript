@@ -1,4 +1,4 @@
-# Docker 中的 Parse-Server 配置笔记
+# Parse-Server 配置笔记
 
 ## 先在 Docker 中安装 MongoDB
 

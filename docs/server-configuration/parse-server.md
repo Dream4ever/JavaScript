@@ -43,7 +43,31 @@ $ npm start
 
 ## Docker 中部署 Parse-Server
 
+先将该项目克隆至本地，git 会自动克隆至当前目录下的 parse-server 文件夹中。
 
+```shell
+$ git clone https://github.com/parse-community/parse-server.git
+```
+
+然后进入该文件夹，让 Docker 编译镜像。
+
+```shell
+$ docker build --tag parse-server .
+```
+
+因为之前已经把 MongoDB 运行起来了，所以 Parse-Server 的镜像编译完成之后，直接在容器中运行即可。
+
+```shell
+$ docker run --name parse \
+  --link mongo:mongo \
+ -p 1337:1337 \
+ -d parse-server \
+ --appId "parse" --masterKey "the_key" --databaseURI mongodb://mongo/parse
+```
+
+在上面的命令中，要注意的一点是，`-d parse-server` 后面的内容，都会被作为参数传入容器中，所以不要传入容器所需参数以外的内容。
+
+自己最开始执行这个命令的时候，把 `-p 1337:1337` 这条映射端口的指令放到了后面，结果容器一启动就报错，然后就自动停止了。当时不知道原因出在这里，于是怎么都解决不了问题。
 
 ## 参考资料
 

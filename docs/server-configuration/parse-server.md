@@ -39,6 +39,8 @@ $ npm start
 
 前面在 Docker 中安装好 MongoDB 之后，用上面的脚本即可快速将 Parse-Server 部署至物理机中，然后就可以用了！
 
+但是！部署在物理机中的话，迁移、复用都无法保证，那么还是得研究一下如何在 Docker 中部署 Parse-Server。
+
 ## 参考资料
 
 - [Docker 微服务教程 - 阮一峰的网络日志](http://www.ruanyifeng.com/blog/2018/02/docker-wordpress-tutorial.html): 介绍了 Docker 的常用命令

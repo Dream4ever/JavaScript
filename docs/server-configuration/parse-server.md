@@ -28,6 +28,17 @@ $ docker run --name mongo-for-parse -v /User/XX/Code/mongodb:/data/db -p 27017:2
 
 执行命令 `docker exec -it mongo-for-parse bash` 在该容器中启动一个 bash，来执行一些命令行程序。
 
+## 物理机中部署 Parse-Server
+
+试了各种方法，最后发现在官方的文档网站上的方法才是通用性最强的：
+
+```shell
+$ sh <(curl -fsSL https://raw.githubusercontent.com/parse-community/parse-server/master/bootstrap.sh)
+$ npm start
+```
+
+前面在 Docker 中安装好 MongoDB 之后，用上面的脚本即可快速将 Parse-Server 部署至物理机中，然后就可以用了！
+
 ## 参考资料
 
 - [Docker 微服务教程 - 阮一峰的网络日志](http://www.ruanyifeng.com/blog/2018/02/docker-wordpress-tutorial.html): 介绍了 Docker 的常用命令

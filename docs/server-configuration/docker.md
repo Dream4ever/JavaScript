@@ -100,6 +100,8 @@ $ docker logs my-mongo
 $ docker container logs my-mongo
 ```
 
+有没有发现上面这些功能相同的命令的一个特点？嗯，很多简写的命令都是用于容器的。
+
 ## 参考资料
 
 - [Docker 参考手册](https://docs.docker.com/reference/)

@@ -65,7 +65,7 @@ $ docker run --name parse \
  --appId "parse" --masterKey "the_key" --databaseURI mongodb://mongo/parse
 ```
 
-在上面的命令中，要注意的一点是，`-d parse-server` 后面的内容，都会被作为参数传入容器中，所以不要传入容器所需参数以外的内容。
+在上面的命令中，要注意的一点是，`-d parse-server` 后面的内容，都会作为 `npm start` 指令的参数被传入容器中，所以不要传入容器所需参数以外的内容。
 
 自己最开始执行这个命令的时候，把 `-p 1337:1337` 这条映射端口的指令放到了后面，结果容器一启动就报错，然后就自动停止了。当时不知道原因出在这里，于是怎么都解决不了问题。
 
@@ -73,4 +73,3 @@ $ docker run --name parse \
 
 - [Connecting to mongo docker container from host](https://stackoverflow.com/questions/33336773/connecting-to-mongo-docker-container-from-host): 里面还提到了如何在其它的容器中连接在容器中的 MongoDB
 - [Parse Server Guide | Parse](https://docs.parseplatform.org/parse-server/guide/)
-- [Setup a dockerized Parse Server in minutes](https://codeburst.io/setup-a-dockerized-parse-server-in-minutes-9e3001324c9c)

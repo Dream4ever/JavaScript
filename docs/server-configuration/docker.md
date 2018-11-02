@@ -56,6 +56,17 @@ $ docker run --name parse \
 
 - `--link mongo:mongo`：将容器 parse 链接至基于镜像 mongo 运行的容器 my-mongo
 
+### 列出容器
+
+```shell
+# 列出运行中的容器
+$ docker container ls
+$ docker ps
+# 列出所有容器
+$ docker container ls -a
+$ docker ps -a
+```
+
 ### 查看容器
 
 ```shell
@@ -77,17 +88,6 @@ $ docker exec -it my-mongo bash
 $ docker logs my-mongo
 # 查看容器的所有日志
 $ docker container logs my-mongo
-```
-
-### 列出容器
-
-```shell
-# 列出运行中的容器
-$ docker container ls
-$ docker ps
-# 列出所有容器
-$ docker container ls -a
-$ docker ps -a
 ```
 
 ## 参考资料

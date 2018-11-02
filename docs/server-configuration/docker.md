@@ -74,6 +74,16 @@ $ docker ps -a
 $ docker container inspect parse
 ```
 
+### 删除容器
+
+```shell
+# 删除指定的容器，记得先停止容器
+$ docker stop my-mongo # 与下面命令相同
+$ docker container stop my-mongo
+$ docker rm my-mongo
+$ docker container rm my-mongo
+```
+
 ### 执行命令
 
 ```shell

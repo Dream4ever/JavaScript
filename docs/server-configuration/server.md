@@ -859,6 +859,12 @@ $ sudo init 6
 
 如何查看 CentOS 中手动安装的包？请看这里：[How to List Manually Installed Packages on CentOS/RHEL](https://www.webhostinghero.com/blog/how-to-list-manually-installed-packages-on-centosrhel/)。只尝试了直接查看数据库的方法，之后可以再尝试其它方法。
 
+用下面的命令，可以查看所有安装/卸载的包。
+
+```shell
+sqlite3 /var/lib/yum/history/history-2018-12-10.sqlite "select tid, cmdline from trans_cmdline WHERE cmdline LIKE '%install%' OR '%remove%'"
+```
+
 ### 相关资料
 
 - Windows 远程访问 CentOS 的方案：[Remote access to CentOS 7 from Windows 10](https://community.spiceworks.com/topic/2040456-remote-access-to-centos-7-from-windows-10)

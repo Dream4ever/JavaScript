@@ -857,7 +857,9 @@ $ sudo init 6
 
 ## 配置 CentOS
 
-如何查看 CentOS 中手动安装的包？请看这里：[How to List Manually Installed Packages on CentOS/RHEL](https://www.webhostinghero.com/blog/how-to-list-manually-installed-packages-on-centosrhel/)。只尝试了直接查看数据库的方法，之后可以再尝试其它方法。
+### 查看手动安装的包
+
+请看这里：[How to List Manually Installed Packages on CentOS/RHEL](https://www.webhostinghero.com/blog/how-to-list-manually-installed-packages-on-centosrhel/)。只尝试了直接查看数据库的方法，之后可以再尝试其它方法。
 
 用下面的命令，可以查看所有安装/卸载的包。
 

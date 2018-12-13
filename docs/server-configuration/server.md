@@ -867,10 +867,17 @@ $ sudo init 6
 sqlite3 /var/lib/yum/history/history-2018-12-10.sqlite "select tid, cmdline from trans_cmdline WHERE cmdline LIKE '%install%' OR '%remove%'"
 ```
 
+### 更改主机名
+
+执行命令 `hostnamectl set-hostname your-new-hostname`，然后再重启系统，就可以修改所要显示的主机名了。
+
+注意，在文章 [How to Set or Change Hostname in CentOS 7](https://www.tecmint.com/set-change-hostname-in-centos-7/) 中，一开始就说明了主机名的命名规则：2~63 个字符，包含字母、数字、减号（-）、点号（.），必须以字母或数字开头，不区分大小写。
+
 ### 相关资料
 
 - Windows 远程访问 CentOS 的方案：[Remote access to CentOS 7 from Windows 10](https://community.spiceworks.com/topic/2040456-remote-access-to-centos-7-from-windows-10)
 - Linux 下格式化硬盘的方案：[Linux Hard Disk Format Command](https://www.cyberciti.biz/faq/linux-disk-format/)
+- [How to Set or Change Hostname in CentOS 7](https://www.tecmint.com/set-change-hostname-in-centos-7/)
 
 ## 安装配置 docker
 

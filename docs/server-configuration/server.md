@@ -877,7 +877,7 @@ sqlite3 /var/lib/yum/history/history-2018-12-10.sqlite "select tid, cmdline from
 
 - Windows 远程访问 CentOS 的方案：[Remote access to CentOS 7 from Windows 10](https://community.spiceworks.com/topic/2040456-remote-access-to-centos-7-from-windows-10)
 - Linux 下格式化硬盘的方案：[Linux Hard Disk Format Command](https://www.cyberciti.biz/faq/linux-disk-format/)
-- [How to Set or Change Hostname in CentOS 7](https://www.tecmint.com/set-change-hostname-in-centos-7/)
+- 更改 CentOS 7 主机名的几种方法：[How to Set or Change Hostname in CentOS 7](https://www.tecmint.com/set-change-hostname-in-centos-7/)
 
 ## 安装配置 docker
 

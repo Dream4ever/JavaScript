@@ -26,3 +26,5 @@
 
 - 参考 https://github.com/donnemartin/dev-setup#iterm2，对 iTerm 2 进行了相关的配置。
 - 参考 https://github.com/donnemartin/dev-setup#git ,对 git 进行了相关配置。
+
+参考项目：[donnemartin/dev-setup](https://github.com/donnemartin/dev-setup)

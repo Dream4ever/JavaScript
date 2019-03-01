@@ -11,14 +11,14 @@
 由于 macOS 自身的问题，需要用下面的命令，将 MongoDB 的数据文件映射至物理机：
 
 ```shell
-$ docker run --name mongo -v /User/XX/Code/mongodb:/data/db -p 27017:27017 -d mongo
+$ docker run --name mongo -v /User/XX/Code/mongodb:/data/db -p 27018:27018 -d mongo
 ```
 
 执行上面的命令之后， `mongo` 这个容器就在后台运行了。
 
 `-v /User/XX/Code/mongodb:/data/db`，将物理机的 `/User/XX/Code/mongodb` 目录映射到容器的 `/data/db` 目录。
 
-`-p 27017:27017`，将容器的 27017 端口映射至物理机的 27017 端口。用命令 `docker container ls -a` 查看的话，会看到 mongo 这个容器的端口信息为 `0.0.0.0:27017->27017/tcp`，就说明容器的端口成功映射至物理机的端口了。后面在 Docker 中部署 Parse-Server 也要注意这一点，官方的 GitHub 页面上，并没有 `-p` 指令，所以测试的时候才会失败。
+`-p 27018:27018`，将容器的 27018 端口映射至物理机的 27018 端口。用命令 `docker container ls -a` 查看的话，会看到 mongo 这个容器的端口信息为 `0.0.0.0:27018->27018/tcp`，就说明容器的端口成功映射至物理机的端口了。后面在 Docker 中部署 Parse-Server 也要注意这一点，官方的 GitHub 页面上，并没有 `-p` 指令，所以测试的时候才会失败。
 
 `-d`，让容器启动后在后台运行。
 
@@ -62,7 +62,7 @@ $ docker run --name parse \
   --link mongo:mongo \
  -p 1337:1337 \
  -d parse-server \
- --appId "parse" --masterKey "the_key" --databaseURI mongodb://mongo/parse
+ --appId "abcd" --masterKey "efgh" --databaseURI mongodb://mongo/parse
 ```
 
 在上面的命令中，要注意的一点是，`-d parse-server` 后面的内容，都会作为 `npm start` 指令的参数被传入容器中，所以不要传入容器所需参数以外的内容。

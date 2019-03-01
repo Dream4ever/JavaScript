@@ -58,16 +58,46 @@ $ docker build --tag parse-server .
 因为之前已经把 MongoDB 运行起来了，所以 Parse-Server 的镜像编译完成之后，直接在容器中运行即可。
 
 ```shell
-$ docker run --name parse \
+$ docker run --name parse-server \
   --link mongo:mongo \
  -p 1337:1337 \
  -d parse-server \
- --appId "abcd" --masterKey "efgh" --databaseURI mongodb://mongo/parse
+ --appId "abcd" --masterKey "efgh" --databaseURI mongodb://mongo/parse-server
 ```
 
 在上面的命令中，要注意的一点是，`-d parse-server` 后面的内容，都会作为 `npm start` 指令的参数被传入容器中，所以不要传入容器所需参数以外的内容。
 
 自己最开始执行这个命令的时候，把 `-p 1337:1337` 这条映射端口的指令放到了后面，结果容器一启动就报错，然后就自动停止了。当时不知道原因出在这里，于是怎么都解决不了问题。
+
+另外，用上面的命令启动容器时，有时会启动失败，这时就需要用 `docker logs parse-server` 查看一下容器的日志，找到出问题的地方，然后加以解决。
+
+## 测试 Parse-Server
+
+参考 [REST API Guide | Parse](https://docs.parseplatform.org/rest/guide/) 这篇文档，对 Parse-Server 进行基本的测试。
+
+- 由于未配置 Parse-Server 的 SSL 证书，所以用 `http` 协议。
+- 域名就用 `localhost:1337` 即可。
+- 在创建 Docker 容器的时候，未设置 Mount Path，就用默认值 `/parse/`。
+- AppId 和 ClientKey 就用创建容器时填写的 `abcd` 和 `efgh` 即可。
+
+根据上面的配置，可以用下面的 curl 命令测试 Parse-Server 是否可用。
+
+```shell
+$ curl -X POST \
+  -H "X-Parse-Application-Id: abcd" \
+  -H "X-Parse-REST-API-Key: efgh" \
+  -H "Content-Type: application/json" \
+  -d '{"score":1337,"playerName":"Sean Plott","cheatMode":false}' \
+  http://localhost:1337/parse/classes/GameScore
+```
+
+注意命令的第二行和第三行，需要把创建容器时填写的 AppId 和 ClientKey 正确地填写进去才行。
+
+如果能返回类似下面的信息，说明 Parse-Server 已经成功启动，可以正常使用了。
+
+```
+{"objectId": "Ed1nuqPvcm","createdAt": "2011-08-20T02:06:57.931Z"}
+```
 
 ## 参考资料
 

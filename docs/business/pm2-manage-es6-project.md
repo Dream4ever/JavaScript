@@ -1,5 +1,80 @@
 # 启动带 ES6 的 Express 项目
 
+## 最新的方法
+
+2019年3月11日更新：
+
+1. Babel 的大版本已经升级到了 7，所以以前的指令不能再用了，用到 ES6 特性的项目要想在 Node.js 中顺利编译及运行，就需要用最新版文档说的方法来做。即使是 10.15.X 这个 LTS 的 Node.js 版本，也有很多特性不支持，比如 `import` 命令。
+2. 相关命令均已在 Windows 下的 Git Bash 中成功执行。
+
+### 安装依赖
+
+将后面要用到的 Babel 的四个 npm 模块用 Yarn 安装为项目的开发依赖。
+
+```shell
+$ yarn add @babel/cli @babel/core @babel/node @babel/preset --dev
+```
+
+### 配置环境
+
+因为 Babel 这次是大版本升级，所以它的相关文件也变了，之前的 `.babelrc`，现在重命名为官方建议的 `babel.config.js`，内容也变成了下面这样：
+
+```javascript
+const presets = [
+  [
+    "@babel/env",
+    {
+      useBuiltIns: "usage",
+    },
+  ],
+];
+
+module.exports = { presets };
+```
+
+只有配置了这个文件，才能正常使用 Babel，这一点要注意。
+
+### 测试执行
+
+`@babel/node` 这个模块让 Node.js 可以正常解析最新的 JS 语法，执行下面的命令，在 Node.js 中运行最新的源码。由于没有把 Babel 的这几个模块安装为全局依赖，所以在执行的时候，就要用 `./node_modules/.bin/babel-node` 这样的方式。
+
+```shell
+$ ./node_modules/.bin/babel-node ./api/bin/www
+```
+
+不过也可以用 `npx` 这个指令，这是 npm 5.2.0 之后引入的新指令，让开发者可以直接调用非全局的、当前项目中的模块。
+
+```shell
+$ npx babel-node ./api/bin/www
+```
+
+### 即时更新
+
+还可以让 nodemon 来监控源码的变更，随时运行最新的程序：
+
+```shell
+$ npx nodemon --exec npx babel-node ./api/bin/www
+```
+
+### 编译源码
+
+代码没有问题之后，就可以用 Babel 把它编译成 Node.js 所支持的源码了。
+
+这里要注意，部分 JS 文件 Babel 不会编译，猜测可能是没有用较新的语法。但是 Babel 也不会自动地把这些文件放到编译后的目录中，所以需要明确指定 `--copy-files` 参数，来将未编译的文件复制过去。
+
+```shell
+$ npx babel ./api/bin/www --out-dir ./dist --copy-files ./api
+```
+
+### 参考资料
+
+- [Usage Guide · Babel](https://babeljs.io/docs/en/usage)：介绍了 Babel 7 安装、使用的基本流程。
+- [babel/example-node-server](https://github.com/babel/example-node-server)：可以参考这个项目，对应用了 ES6 语法的 Node.js 项目进行更好地管理。
+
+---
+
+## 已废弃
+
 由于 Express 项目中的代码用到了 ES6，为了让项目能够正常运行，就需要 `babel` 来打辅助。
 
 ```bash

@@ -36,6 +36,14 @@
     </article>
   </div>
 
+  <script>
+    function setTitle() {
+      let title = document.querySelector('h1')
+      document.title = `${title.innerHTML} | 岁月留痕`
+    }
+
+    setTitle()
+  </script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js"></script>
   <script>hljs.initHighlightingOnLoad();</script>
 </body>

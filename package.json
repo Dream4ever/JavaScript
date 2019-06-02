@@ -12,6 +12,7 @@
     "express": "~4.16.1",
     "http-errors": "~1.6.3",
     "marked": "^0.6.2",
-    "morgan": "~1.9.1"
+    "morgan": "~1.9.1",
+    "parse": "^2.4.0"
   }
 }

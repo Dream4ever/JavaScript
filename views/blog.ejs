@@ -31,21 +31,28 @@
 
 <body>
   <div id="container">
-    <article class="markdown-body">
-      <%- content %>
+    <article id="article" class="markdown-body">
     </article>
   </div>
 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/0.6.2/marked.min.js"></script>
   <script>
-    function setTitle() {
+    let url = 'https://raw.githubusercontent.com/Dream4ever/JavaScript/master/docs/business/anniversary.md'
+    axios.get(url).then(res => {
+      document.querySelector('#article').innerHTML = marked(res.data)
       let title = document.querySelector('h1')
       document.title = `${title.innerHTML} | 岁月留痕`
+    })
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <script>
+    function setTitle() {
     }
 
     setTitle()
   </script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js"></script>
-  <script>hljs.initHighlightingOnLoad();</script>
 </body>
 
 </html>

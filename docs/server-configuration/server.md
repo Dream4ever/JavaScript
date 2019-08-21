@@ -1012,5 +1012,12 @@ sudo docker run --detach \
 
 先按照 [使用SSH密钥对](https://help.aliyun.com/document_detail/51793.html) 一文中的方法，创建 SSH 密钥对，并与阿里云 ECS 实例绑定。
 
-再按照 [使用SSH密钥对连接Linux实例](https://help.aliyun.com/document_detail/51798.html) 一文中的方法，使用 SSH 密钥对链接实例。在 macOS 环境下，建议设置 SSH 配置文件来简化 SSH
-简化 连接的操作。
+再按照 [使用SSH密钥对连接Linux实例](https://help.aliyun.com/document_detail/51798.html) 一文中的方法，使用 SSH 密钥对链接实例。在 macOS 环境下，建议设置 SSH 配置文件来简化 SSH 连接的操作。
+
+## 更新软件
+
+配置好 SSH 之后，连接至服务器，执行 `yum update -y`，更新系统所有已安装的软件包。
+
+## 配置 Nginx
+
+参考官方文档 [RHEL/CentOS | Nginx](http://nginx.org/en/linux_packages.html#RHEL-CentOS)，安装 Nginx。

@@ -1021,3 +1021,11 @@ sudo docker run --detach \
 ## 配置 Nginx
 
 参考官方文档 [RHEL/CentOS | Nginx](http://nginx.org/en/linux_packages.html#RHEL-CentOS)，安装 Nginx。
+
+安装完成后，参考 [Nginx/Tengine服务器安装SSL证书](https://help.aliyun.com/knowledge_detail/95491.html) 这篇文档将 SSL 证书部署至服务器上。但该文档更新时间
+为
+ 2018-11-30，部分
+参数
+参数设置
+参数设置已经
+参数设置已经过时，正确的配置，以官方文档 [Configuring HTTPS servers](http://nginx.org/en/docs/http/configuring_https_servers.html) 为准。

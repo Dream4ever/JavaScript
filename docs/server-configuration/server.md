@@ -1018,7 +1018,7 @@ sudo docker run --detach \
 
 配置好 SSH 之后，连接至服务器，执行 `yum update -y`，更新系统所有已安装的软件包。
 
-## 配置 Nginx
+## 配置 Nginx 及 SSL
 
 参考官方文档 [RHEL/CentOS | Nginx](http://nginx.org/en/linux_packages.html#RHEL-CentOS)，安装 Nginx。
 
@@ -1035,3 +1035,34 @@ sudo docker run --detach \
 按照 [nvm-sh/nvm](https://github.com/nvm-sh/nvm) 中的说明，安装 nvm，顺便装上最新版的 Node.js。
 
 再按照 [Installation | Yarn](https://yarnpkg.com/en/docs/install#centos-stable) 中的说明，安装 Yarn。
+
+## 部署博客
+
+前面安装了 Git 和 Node 环境，现在把博客从 GitHub 上克隆到服务器上。
+
+因为博客用的是 VuePress 这个框架，看到这个框架有了更新，就用 yarn 把旧的依赖包全删除了，安装了最新的 VuePress。
+
+安装完成之后，按照 VuePress 的教程，将博客编译成静态文件，打包后的文件位于 /root/sites/blog/docs/.vuepress/dist 目录下。
+
+这里还需要对 Nginx 进行配置。
+
+首先需要 Nginx 的网站设置，编辑 /etc/nginx/conf.d/default.conf 文件，修改 SSL 所在 server 块中的 location 字段，将值设置成如下内容：
+
+```
+    location / {
+        root /root/sites/blog/docs/.vuepress/dist;
+        index index.html index.htm;
+    }
+```
+
+然后再修改默认的 server 块，也就是 http 对应的 server，在 `listen 80` 后面增加一行：
+
+```
+    return 301 https://$host$request_uri;
+```
+
+这样就能将 http 的请求全部重定向到 https 上。
+
+这样还不算完，还得修改 Nginx 的用户设置，编辑 /etc/nginx/nginx.conf 文件，将开头的 user nginx 改为 user root 之类的，确保执行 Nginx 的用户对博客所在目录有正常的读取权限。
+
+这样全部配置完成之后，博客就可以正常访问了。折腾了一晚上，该好好休息一下了。

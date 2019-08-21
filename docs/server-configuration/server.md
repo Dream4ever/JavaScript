@@ -1025,3 +1025,13 @@ sudo docker run --detach \
 安装完成后，参考 [Nginx/Tengine服务器安装SSL证书](https://help.aliyun.com/knowledge_detail/95491.html) 这篇文档将 SSL 证书部署至服务器上。但该文档更新时间为 2018-11-30，部分参数设置已经过时，正确的配置，以官方文档 [Configuring HTTPS servers](http://nginx.org/en/docs/http/configuring_https_servers.html) 为准。
 
 配置完成之后，执行命令 `nginx -s reload` 加载最新的配置文件，如果不报错，说明设置成功。然后访问 https 协议的域名，如果显示 404 Not Found，说明 SSL 证书配置成功。
+
+## 安装 Git
+
+参考 [How to Install latest version of Git ( Git 2.x ) on CentOS 7](https://computingforgeeks.com/how-to-install-latest-version-of-git-git-2-x-on-centos-7/) 这篇文章，安装较新版本的 Git。
+
+## 配置 Node 环境
+
+按照 [nvm-sh/nvm](https://github.com/nvm-sh/nvm) 中的说明，安装 nvm，顺便装上最新版的 Node.js。
+
+再按照 [Installation | Yarn](https://yarnpkg.com/en/docs/install#centos-stable) 中的说明，安装 Yarn。

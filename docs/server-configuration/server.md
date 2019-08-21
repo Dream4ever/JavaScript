@@ -997,3 +997,20 @@ sudo docker run --detach \
 - 介绍 docker daemon 所默认监听的连接：[Unix域套接字（Unix Domain Socket）介绍](https://blog.csdn.net/Roland_Sun/article/details/50266565)
 - 在 docker 中安装 GitLab 的官方文档：[GitLab Docker images](https://docs.gitlab.com/omnibus/docker/)
 - 用 docker 安装 GitLab 时 22 端口被占用的解决办法：[用docker安装gitlab ssh总是端口不能用](https://www.oschina.net/question/90201_2280758)
+
+---
+
+# 阿里云服务器配置笔记 4.0
+
+> 2019年08月21日
+
+## 安装系统
+
+这次安装了阿里云上的官方 CentOS 镜像最新版 7.6，等待安装完毕，再继续下面的步骤。
+
+## 配置 SSH
+
+先按照 [使用SSH密钥对](https://help.aliyun.com/document_detail/51793.html) 一文中的方法，创建 SSH 密钥对，并与阿里云 ECS 实例绑定。
+
+再按照 [使用SSH密钥对连接Linux实例](https://help.aliyun.com/document_detail/51798.html) 一文中的方法，使用 SSH 密钥对链接实例。在 macOS 环境下，建议设置 SSH 配置文件来简化 SSH
+简化 连接的操作。

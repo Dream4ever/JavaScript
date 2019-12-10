@@ -73,6 +73,10 @@ module.exports = {
         children: getPath('server-configuration'),
       },
       {
+        title: 'Nginx',
+        children: getPath('nginx'),
+      },
+      {
         title: 'Git',
         children: getPath('git'),
       },

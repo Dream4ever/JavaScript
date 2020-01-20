@@ -58,8 +58,10 @@ app.use(log)
 ```js
 // 1. 处理所有请求
 app.use(cors())
+
 // 2. 只处理特定路由
 app.get('/', log, (req, res) => { ... })
+
 // 3. 只对特定路由调用若干中间件
 app.get('/', [log1, log2, log3], (req, res) => { ... })
 ```

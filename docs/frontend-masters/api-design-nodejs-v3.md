@@ -197,7 +197,7 @@ router.route('/cat/:id')
 
 ## 测试
 
-controller 的测试文件定义如下：
+controller 的测试代码如下：
 
 ```js
 // src/resources/item/__tests__/item.controllers.spec..js
@@ -222,7 +222,7 @@ describe('item controllers', () => {
 })
 ```
 
-controller 的逻辑定义如下：
+controller 的业务代码如下：
 
 ```js
 // src/resources/item/item.controllers.js
@@ -234,7 +234,7 @@ export const removeOne = (req, res) => { res.status(200) }
 export const updateOne = (req, res) => { res.status(200) }
 ```
 
-router 的测试文件定义如下：
+router 的测试代码如下：
 
 ```js
 // src/resources/item/__tests__/item.router.spec.js
@@ -261,7 +261,7 @@ describe('item router', () => {
 })
 ```
 
-router 的逻辑定义如下：
+router 的业务代码如下：
 
 ```js
 import { Router } from 'express'
@@ -281,4 +281,4 @@ router.route('/:id')
 export default router
 ```
 
-测试和业务逻辑按上面的方式写，测试即可正常通过。
+测试和业务的代码分别按照上面的方式写，测试就可正常通过。

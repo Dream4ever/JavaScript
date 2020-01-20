@@ -10,6 +10,12 @@
 
 简而言之，就是通过 Homebrew 安装 MongoDB，并按照官方建议，用 brew 将 MongoDB 以服务的方式运行在后台。
 
+## 注意事项
+
+### Yarn 及 NPM
+
+在 macOS 上，`bcrypt` 这个库总是无法用安装成功，最后用 npm 安装成功，具体操作见 [参考链接](https://github.com/mozilla/voice-web/issues/993#issuecomment-441209159)。
+
 ## Express 中间件
 
 ### 适用场景

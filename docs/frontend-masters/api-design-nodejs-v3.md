@@ -1,28 +1,28 @@
-## 课程地址
+### 课程地址
 
 [API Design in Node.js, v3](https://frontendmasters.com/courses/api-design-nodejs-v3/)
 
-## 环境配置
+### 环境配置
 
-### 在 macOS 上安装 MongoDB
+#### 在 macOS 上安装 MongoDB
 
 参考 [Install MongoDB Community Edition on macOS](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-os-x/)。
 
 简而言之，就是通过 Homebrew 安装 MongoDB，并按照官方建议，用 brew 将 MongoDB 以服务的方式运行在后台。
 
-## 注意事项
+### 注意事项
 
-### Yarn 及 NPM
+#### Yarn 及 NPM
 
 在 macOS 上，`bcrypt` 这个库总是无法用安装成功，最后用 npm 安装成功，具体操作见 [参考链接](https://github.com/mozilla/voice-web/issues/993#issuecomment-441209159)。
 
-## Express 中间件
+### Express 中间件
 
-### 适用场景
+#### 适用场景
 
 可对传入的请求进行验证、转换、追踪、错误处理等各种常用功能。
 
-### 定义
+#### 定义
 
 下面的代码展示了一个中间件的定义和使用。
 
@@ -45,7 +45,7 @@ app.use(log)
 
 在 Express 中，就是 next() 将中间件们串起来的，这样才能依次让各个中间件处理请求。
 
-### 使用
+#### 使用
 
 下面几种都是中间件的使用方式。
 
@@ -58,7 +58,7 @@ app.get('/', log, (req, res) => { ... })
 app.get('/', [log1, log2, log3], (req, res) => { ... })
 ```
 
-### 作用
+#### 作用
 
 对传入请求，以确定的顺序执行一系列处理函数。
 
@@ -70,7 +70,7 @@ app.use(urlencoded({ extended: true }))
 app.use(morgan('dev'))
 ```
 
-### 中间件互相通信
+#### 中间件互相通信
 
 如何在一个中间件中，将错误，或者普通的消息传到下一个中间件，或者控制器中？
 
@@ -88,7 +88,7 @@ app.get('/', log, (req, res) => {
 })
 ```
 
-### 错误处理
+#### 错误处理
 
 如果往中间件里的 next() 函数传入了参数，则参数会被当做错误进行处理。比如一个验证请求的中间件，发现请求不合法时，就可以向 next() 传入参数，然后在另一个专门处理错误的中间件中进行处理。
 
@@ -98,7 +98,7 @@ app.get('/', log, (req, res) => {
 
 但是，即使改为在 next() 函数里抛出错误，调用了该中间件的控制器，在满足错误抛出条件的情况下，控制器里的代码依然不会被执行。那两者有什么区别呢？区别只是在于，next() 中抛出的错误，能够被再之后的中间件接住并处理？
 
-### 中间件和控制器
+#### 中间件和控制器
 
 虽然中间件可以像控制器一样对请求作出响应，但不建议这么做。
 
@@ -106,9 +106,9 @@ app.get('/', log, (req, res) => {
 
 可以将控制器理解为请求栈中，最终的那个中间件。
 
-## Express 路由
+### Express 路由
 
-### 匹配模式
+#### 匹配模式
 
 下面是 Express 中的四种路由匹配模式，在编写 RESTful API 时，前两种最为常用。
 
@@ -124,7 +124,7 @@ app.get('^(me)')
 app.get('/user/*')
 ```
 
-### REST API
+#### REST API
 
 HTTP 方法和具体的路由结合起来，就是 REST API。
 
@@ -140,7 +140,7 @@ app.put('/data')
 app.delete('/delete')
 ```
 
-### 顺序
+#### 顺序
 
 如果同一个路由路径定义了两次，那么会按照定义的先后次序执行。
 
@@ -163,7 +163,7 @@ app.get('/', (req, res) => {
 })
 ```
 
-### Router 与子 router(route?)
+#### Router 与子 router(route?)
 
 不同的 API 路径会需要不同的路由规则，比如一类 API 路径是用于返回 JSON 信息的，另一类 API 路径是用于调用机器学习接口的，那么这两类 API 可能就需要不同的验证规则，这个时候，为两类 API 设置各自的 router，就能实现这个需求了。
 
@@ -178,7 +178,7 @@ router.get('/me', (req, res) => {
 app.use('/api', router)
 ```
 
-### Router Verb Methods
+#### Router Verb Methods
 
 对于 RESTful API 来说，CRUD 可以统一抽象为以下五种操作：
 
@@ -205,9 +205,9 @@ router.route('/cat/:id')
   .delete()
 ```
 
-## 接口测试
+### 接口测试
 
-### 测试路由
+#### 测试路由
 
 router 的测试代码如下：
 
@@ -261,15 +261,15 @@ export default router
 
 测试和业务的代码分别按照上面的方式写，测试就可正常通过。
 
-## MongoDB
+### MongoDB
 
-### Schema 与 Modal
+#### Schema 与 Modal
 
 Schema 和 Modal 的关系，是不是可以理解为 Class 和 Object 之间的关系？
 
 Schema 决定了 Modal 有哪些字段，如何对 Modal 的字段进行验证、索引、hook（这个怎么翻译？）等等。
 
-### 实例
+#### 实例
 
 ```js
 import mongoose from 'mongoose'

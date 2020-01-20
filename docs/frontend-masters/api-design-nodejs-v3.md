@@ -205,6 +205,8 @@ router.route('/cat/:id')
   .delete()
 ```
 
+---
+
 ### Express 控制器
 
 #### 与中间件的区别

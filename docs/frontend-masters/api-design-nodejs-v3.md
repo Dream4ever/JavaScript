@@ -39,7 +39,7 @@ const log = (req, res, next) => {
 app.use(log)
 ```
 
-### next
+#### next
 
 在定义中间件的代码里，next() 的作用，就是让当前中间件处理完请求之后，将请求继续往下传下去。而不是像控制器那样，用 res.send() 或 res.end() 作出响应并结束请求。
 

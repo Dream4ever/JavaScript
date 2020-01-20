@@ -125,7 +125,6 @@ app.get('/', log, (req, res) => {
 ```js
 // 严格匹配
 app.get('/data')
-
 // 参数匹配
 app.get('/:id')
 // 正则匹配
@@ -140,6 +139,7 @@ HTTP 方法和具体的路由结合起来，就是 REST API。
 
 ```js
 // CRUD
+
 // Create → put
 app.post('/data')
 // Read → get
@@ -179,7 +179,7 @@ app.get('/', (req, res) => {
 不同的 API 路径会需要不同的路由规则，比如一类 API 路径是用于返回 JSON 信息的，另一类 API 路径是用于调用机器学习接口的，那么这两类 API 可能就需要不同的验证规则，这个时候，为两类 API 设置各自的 router，就能实现这个需求了。
 
 ```js
-// Router 用法示例
+// Router 用法示例 /api/me
 const router = express.Router()
 
 router.get('/me', (req, res) => {

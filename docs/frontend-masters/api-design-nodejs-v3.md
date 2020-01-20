@@ -194,3 +194,91 @@ router.route('/cat/:id')
   .put()
   .delete()
 ```
+
+## 测试
+
+controller 的测试文件定义如下：
+
+```js
+// src/resources/item/__tests__/item.controllers.spec..js
+
+import controllers from '../item.controllers'
+import { isFunction } from 'lodash'
+
+describe('item controllers', () => {
+  test('has crud controllers', () => {
+    const crudMethods = [
+      'getOne',
+      'getMany',
+      'createOne',
+      'removeOne',
+      'updateOne'
+    ]
+
+    crudMethods.forEach(name =>
+      expect(isFunction(controllers[name])).toBe(true)
+    )
+  })
+})
+```
+
+controller 的逻辑定义如下：
+
+```js
+// src/resources/item/item.controllers.js
+
+export const getOne = (req, res) => { res.status(200) }
+export const getMany = (req, res) => { res.status(200) }
+export const createOne = (req, res) => { res.status(200) }
+export const removeOne = (req, res) => { res.status(200) }
+export const updateOne = (req, res) => { res.status(200) }
+```
+
+router 的测试文件定义如下：
+
+```js
+// src/resources/item/__tests__/item.router.spec.js
+
+import router from '../item.router'
+
+describe('item router', () => {
+  test('has crud routes', () => {
+    const routes = [
+      { path: '/', method: 'get' },
+      { path: '/:id', method: 'get' },
+      { path: '/:id', method: 'delete' },
+      { path: '/:id', method: 'put' },
+      { path: '/', method: 'post' }
+    ]
+
+    routes.forEach(route => {
+      const match = router.stack.find(
+        s => s.route.path === route.path && s.route.methods[route.method]
+      )
+      expect(match).toBeTruthy()
+    })
+  })
+})
+```
+
+router 的逻辑定义如下：
+
+```js
+import { Router } from 'express'
+import { getOne, getMany, createOne, updateOne, removeOne } from './item.controllers'
+
+const router = Router()
+
+router.route('/')
+  .get(getMany)
+  .post(createOne)
+
+router.route('/:id')
+  .get(getOne)
+  .put(updateOne)
+  .delete(removeOne)
+
+export default router
+```
+
+测试和业务逻辑按上面的方式写，测试即可正常通过。

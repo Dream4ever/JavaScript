@@ -289,6 +289,7 @@ Mongoose API 与 CRUD 对应关系如下：
 - C - `Model.create()`, `new Model()`
 - R - `Model.find()`, `Model.findOne()`, `Model.findById()`
 - U - `model.update()`, `Model.findByIdAndUpdate()`, `Model.findOneAndUpdate()`
+- D - `model.remove()`, `Model.findByIdAndRemove()`, `Model.findOneAndRemove()`
 
 ```js
 // Create
@@ -303,6 +304,10 @@ console.log(await Item.find().exec())
 // Update One
 const updated = await Item.findByIdAndUpdate( item._id, { name: 'eat' }, { new: true }).exec()
 console.log(updated)
+
+// Remove One
+const removed = await Item.findByIdAndRemove(item._id).exec()
+console.log(removed)
 ```
 
 ---

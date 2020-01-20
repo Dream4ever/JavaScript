@@ -250,3 +250,9 @@ export default router
 ```
 
 测试和业务的代码分别按照上面的方式写，测试就可正常通过。
+
+## MongoDB
+
+### Schema 与 Modal
+
+Schema 相当于 Modal 的蓝图，它决定了 Modal 会有哪些属性，如何对 Modal 的属性进行验证、索引、hook（这个怎么翻译？）。

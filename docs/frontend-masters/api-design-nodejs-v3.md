@@ -282,6 +282,29 @@ run()
 }
 ```
 
+#### CRUD
+
+Mongoose API 与 CRUD 对应关系如下：
+
+- C - `Model.create()`, `new Model()`
+- R - `Model.find()`, `Model.findOne()`, `Model.findById()`
+- U - `model.update()`, `Model.findByIdAndUpdate()`, `Model.findOneAndUpdate()`
+
+```js
+// Create
+const item = await Item.create({ ... })
+
+// Read One
+console.log(await Item.findById(item._id).exec())
+
+// Read Many
+console.log(await Item.find().exec())
+
+// Update One
+const updated = await Item.findByIdAndUpdate( item._id, { name: 'eat' }, { new: true }).exec()
+console.log(updated)
+```
+
 ---
 
 ### 接口测试

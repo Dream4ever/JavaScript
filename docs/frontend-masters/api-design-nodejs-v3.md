@@ -257,6 +257,21 @@ const run = async () => {
 run()
 ```
 
+执行 `npm run build` 编译代码，然后执行 `node dist/resources/item/item.controllers.js` 运行上面的代码，就会在终端得到如下结果，说明创建文档的代码执行成功了。
+
+```bash
+{
+  status: 'active',
+  _id: 5e258de33d0523c9503570a0,
+  name: 'Clean up',
+  createdBy: 5e258de33d0523c95035709e,
+  list: 5e258de33d0523c95035709f,
+  createdAt: 2020-01-20T11:24:19.069Z,
+  updatedAt: 2020-01-20T11:24:19.069Z,
+  __v: 0
+}
+```
+
 ### 接口测试
 
 #### 测试路由

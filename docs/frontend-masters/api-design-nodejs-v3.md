@@ -159,3 +159,30 @@ router.get('/me', (req, res) => {
 
 app.use('/api', router)
 ```
+
+### Router Verb Methods
+
+对于 RESTful API 来说，CRUD 可以统一抽象为以下五种操作：
+
+```js
+const routes = [
+  'get /cat',
+  'get /cat/:id',
+  'post /cat',
+  'put /cat/:id',
+  'delete /cat/:id'
+]
+```
+
+虽然说这五种操作的 HTTP 方法各不相同，但是在路由的路径层面，其实只有两种。那有没有方法能够简化路由代码的编写呢？当然有，下面的代码就是：
+
+```js
+router.route('/cat')
+  .get()
+  .post()
+
+router.route('/cat/:id')
+  .get()
+  .put()
+  .delete()
+```

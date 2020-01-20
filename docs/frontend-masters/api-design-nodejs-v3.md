@@ -2,6 +2,8 @@
 
 [API Design in Node.js, v3](https://frontendmasters.com/courses/api-design-nodejs-v3/)
 
+---
+
 ### 环境配置
 
 #### 在 macOS 上安装 MongoDB
@@ -10,11 +12,15 @@
 
 简而言之，就是通过 Homebrew 安装 MongoDB，并按照官方建议，用 brew 将 MongoDB 以服务的方式运行在后台。
 
+---
+
 ### 注意事项
 
 #### Yarn 及 NPM
 
 在 macOS 上，`bcrypt` 这个库总是无法用安装成功，最后用 npm 安装成功，具体操作见 [参考链接](https://github.com/mozilla/voice-web/issues/993#issuecomment-441209159)。
+
+---
 
 ### Express 中间件
 
@@ -105,6 +111,8 @@ app.get('/', log, (req, res) => {
 中间件用于将数据进行处理之后，传给后续的中间件或路由进行下一步处理。而控制器则用于对数据进行处理，并将处理后的结果返回给 API 调用者。
 
 可以将控制器理解为请求栈中，最终的那个中间件。
+
+---
 
 ### Express 路由
 
@@ -274,6 +282,8 @@ run()
 }
 ```
 
+---
+
 ### 接口测试
 
 #### 测试路由
@@ -329,6 +339,8 @@ export default router
 ```
 
 测试和业务的代码分别按照上面的方式写，测试就可正常通过。
+
+---
 
 ### MongoDB
 

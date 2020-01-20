@@ -257,8 +257,8 @@ const run = async () => {
   
   const item = await Item.create({
     name: 'Clean up',
-    createdBy: mongoose.Types.ObjectId(),
-    list: mongoose.Types.ObjectId()
+    createdBy: mongoose.Types.ObjectId(), // 创建一个 fake ObjectId
+    list: mongoose.Types.ObjectId() // 创建一个 fake ObjectId
   })
   
   console.log(item)

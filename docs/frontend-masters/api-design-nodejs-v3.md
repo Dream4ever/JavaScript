@@ -145,4 +145,17 @@ app.get('/', (req, res) => {
 })
 ```
 
-### Router 与子路由（route）
+### Router 与子 router(route?)
+
+不同的 API 路径会需要不同的路由规则，比如一类 API 路径是用于返回 JSON 信息的，另一类 API 路径是用于调用机器学习接口的，那么这两类 API 可能就需要不同的验证规则，这个时候，为两类 API 设置各自的 router，就能实现这个需求了。
+
+```js
+// Router 用法示例
+const router = express.Router()
+
+router.get('/me', (req, res) => {
+  res.send({ me: 'hello' })
+})
+
+app.use('/api', router)
+```

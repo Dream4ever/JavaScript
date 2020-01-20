@@ -155,7 +155,7 @@ app.delete('/delete')
 如果同一个路由路径定义了两次，那么会按照定义的先后次序执行。
 
 ```js
-// 执行完第一条匹配到的路由后就返回，得到 { data: 1 }
+// 执行完第一条匹配到的路由，返回 { data: 1 }
 app.get('/', (req, res) => {
   res.send({ data: 1 })
 })
@@ -163,7 +163,8 @@ app.get('/', (req, res) => {
 app.get('/', (req, res) => {
   res.send({ data: 2 })
 })
-// 依次执行两条路由，得到 { data: 2 }
+
+// 依次执行两条路由，返回 { data: 2 }
 app.get('/', (req, res) => {
   next()
 })

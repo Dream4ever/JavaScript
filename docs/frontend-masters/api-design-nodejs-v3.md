@@ -197,42 +197,7 @@ router.route('/cat/:id')
 
 ## 测试
 
-controller 的测试代码如下：
-
-```js
-// src/resources/item/__tests__/item.controllers.spec..js
-
-import controllers from '../item.controllers'
-import { isFunction } from 'lodash'
-
-describe('item controllers', () => {
-  test('has crud controllers', () => {
-    const crudMethods = [
-      'getOne',
-      'getMany',
-      'createOne',
-      'removeOne',
-      'updateOne'
-    ]
-
-    crudMethods.forEach(name =>
-      expect(isFunction(controllers[name])).toBe(true)
-    )
-  })
-})
-```
-
-controller 的业务代码如下：
-
-```js
-// src/resources/item/item.controllers.js
-
-export const getOne = (req, res) => { res.status(200) }
-export const getMany = (req, res) => { res.status(200) }
-export const createOne = (req, res) => { res.status(200) }
-export const removeOne = (req, res) => { res.status(200) }
-export const updateOne = (req, res) => { res.status(200) }
-```
+### 测试路由
 
 router 的测试代码如下：
 
@@ -265,18 +230,21 @@ router 的业务代码如下：
 
 ```js
 import { Router } from 'express'
-import { getOne, getMany, createOne, updateOne, removeOne } from './item.controllers'
+
+const controller = (req, res) => {
+  res.send({ message: 'hello' })
+}
 
 const router = Router()
 
 router.route('/')
-  .get(getMany)
-  .post(createOne)
+  .get(controller)
+  .post(controller)
 
 router.route('/:id')
-  .get(getOne)
-  .put(updateOne)
-  .delete(removeOne)
+  .get(controller)
+  .put(controller)
+  .delete(controller)
 
 export default router
 ```

@@ -2,6 +2,14 @@
 
 [API Design in Node.js, v3](https://frontendmasters.com/courses/api-design-nodejs-v3/)
 
+## 环境配置
+
+### 在 macOS 上安装 MongoDB
+
+按照 [Install MongoDB Community Edition on macOS](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-os-x/) 这篇文章中的方法来就可以。
+
+简而言之，就是通过 Homebrew 安装 MongoDB，并按照官方建议，用 brew 将 MongoDB 以服务的方式运行在后台。
+
 ## Express 中间件
 
 ### 适用场景

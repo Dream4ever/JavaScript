@@ -286,7 +286,7 @@ const itemSchema = new mongoose.Schema(
     due: Date,
     createdBy: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: 'user' // 从 user 这个 Modal 中查找其 ObjectId 的值？
+      ref: 'user' // TODO: 从 user 这个 Modal 中查找其 ObjectId 的值？
     }
   },
   { timestamps: true }

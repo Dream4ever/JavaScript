@@ -261,4 +261,40 @@ export default router
 
 ### Schema 与 Modal
 
-Schema 相当于 Modal 的蓝图，它决定了 Modal 会有哪些属性，如何对 Modal 的属性进行验证、索引、hook（这个怎么翻译？）。
+Schema 和 Modal 的关系，是不是可以理解为 Class 和 Object 之间的关系？
+
+Schema 决定了 Modal 有哪些字段，如何对 Modal 的字段进行验证、索引、hook（这个怎么翻译？）等等。
+
+### 实例
+
+```js
+import mongoose from 'mongoose'
+
+const itemSchema = new mongoose.Schema(
+  {
+    name: {
+      type: String,
+      required: true, // 该字段不能为空
+      trim: true, // 可删除首尾的空白字符
+      maxlength: 50 // 设置字段最大长度
+    },
+    status: {
+      type: String,
+      enum: ['active', 'complete', 'pastdue'], // 字段值从这几个中枚举
+      default: 'active' // 字段的默认值
+    },
+    due: Date,
+    createdBy: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'user' // 从 user 这个 Modal 中查找其 ObjectId 的值？
+    }
+  },
+  { timestamps: true }
+)
+
+// 下面的索引设置，规定了每个 list 中的 name 必须唯一
+// 如果交换 list 和 name 的顺序，则要求每个 name 中的 list 必须唯一
+itemSchema.index({ list: 1, name: 1 }, { unique: true })
+
+export const Item = mongoose.model('item', itemSchema)
+```

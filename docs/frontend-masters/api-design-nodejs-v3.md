@@ -110,7 +110,7 @@ app.get('/', log, (req, res) => {
 
 #### 匹配模式
 
-下面是 Express 中的四种路由匹配模式，在编写 RESTful API 时，前两种最为常用。
+下面是 Express 中的四种路由匹配模式，在编写 REST API 时，前两种最为常用。
 
 ```js
 // 严格匹配
@@ -180,7 +180,7 @@ app.use('/api', router)
 
 #### Router Verb Methods
 
-对于 RESTful API 来说，CRUD 可以统一抽象为以下五种操作：
+对于 REST API 来说，CRUD 可以统一抽象为以下五种操作：
 
 ```js
 const routes = [
@@ -228,6 +228,34 @@ router.route('/cat/:id')
 当然了，也会有极其罕见的例外情况，比如 Stripe 这类支付 API，需要优先响应用户的请求，然后可能需要再做后续操作，不过这种情况遇到了再额外讨论。
 
 另外也不建议在返回响应的语句后面再调用 `next()`，同样无法保证代码不会出问题。
+
+#### REST API 控制器的通用化
+
+因为 REST API 将所有内容都视为“资源”，那么对于一般的资源来说，所需进行的操作都是相同的：CRUD。比如在这门课程中所示范的 TO-DO APP，对于待办事项列表（list），及每个列表中的待办事项（item），都会有这几项操作：getMany，getOne，createOne，updateOne，removeOne。由于这几项操作对各类资源其实是相同的，那么就可以为每种操作只定义一个通用的控制器，然后在各类资源中均调用这个控制器即可，这样就提高了代码的复用性。
+
+#### 简单示例
+
+```js
+// src/resources/item/item.controllers.js
+
+import { Item } from './item.model'
+import mongoose from 'mongoose'
+import { connect } from '../../utils/db'
+
+const run = async () => {
+  await connect('mongodb://localhost:27017/api-test')
+  
+  const item = await Item.create({
+    name: 'Clean up',
+    createdBy: mongoose.Types.ObjectId(),
+    list: mongoose.Types.ObjectId()
+  })
+  
+  console.log(item)
+}
+
+run()
+```
 
 ### 接口测试
 

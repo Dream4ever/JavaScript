@@ -295,7 +295,7 @@ Mongoose API 与 CRUD 对应关系如下：
 - D - `model.remove()`, `Model.findByIdAndRemove()`, `Model.findOneAndRemove()`
 
 ```js
-// Create
+// Create One
 const item = await Item.create({ ... })
 
 // Read One
@@ -312,6 +312,71 @@ console.log(updated)
 const removed = await Item.findByIdAndRemove(item._id).exec()
 console.log(removed)
 ```
+
+#### “面向测试”编写 CRUD Controllers
+
+说明：
+
+- CRUD Controllers 定义文件：`src/utils/crud.js`
+- 测试用例文件：`src/utils/__tests__/crud.spec.js`
+
+在测试用例 `crud.spec.js` 中，定义了上一小节五种 CRUD 所需满足的条件。
+
+以 `getOne` 为例，在其 `describe` 函数中，定义了需测试的两种情况，一种是 `test('finds by authenticated user and id')`，另一种是 `test('404 if no doc was found')`，也就是 `getOne` 成功和失败时所应满足的不同条件。先看前一种，即 `getOne` 成功时所应满足的条件。
+
+在 `test('finds by authenticated user and id')` 函数中，有如下代码。
+
+```js
+const req = {
+  params: {
+    id: list._id
+  },
+  user: {
+    _id: user
+  }
+}
+```
+
+也就是说在传入请求（request）中，`params` 参数中会传入 `id` 这个字段，而 `user` 参数中会传入 `_id` 这个字段。
+
+那么在 `src/utils/crud.js` 文件中，就需要把这两个字段用起来：
+
+```js
+export const getOne = model => async (req, res) => {
+  const id = req.params.id
+  const userId = req.user._id
+}
+```
+
+而在 `test()` 函数的后半部分，又有如下代码。
+
+```js
+const res = {
+  status(status) {
+    expect(status).toBe(200)
+    return this
+  },
+  json(result) {
+    expect(result.data._id.toString()).toBe(list._id.toString())
+  }
+}
+```
+
+这段代码要求被测试代码所返回的请求，其状态码应当为 `200`，并且所返回的 JSON 中，文档的属性名要定义为 `data`。
+
+那么在 `src/utils/crud.js` 文件中，就需要编写如下代码：
+
+```js
+const doc = await model.findOne({ _id: id, createdBy: userId }).exec()
+
+return res.status(200).json({ data: doc })
+```
+
+上面代码中，第一行的查询语句不需多说，后面的 `status(200)` 用于设置 HTTP 响应状态码。这里要说明一下，如果返回数据用的是 `res.send()`，那么 HTTP 响应状态码默认就是 `200`。但这次的测试用例中，要求返回的是 JSON，没有这个默认设置，所以需要主动设置一下。
+
+而后面的 `.json({ data: doc })`，则是将查询到的文档赋给所需返回对象的 `data` 字段值，并用 `json()` 函数处理成 JSON，然后返回。
+
+这里有一点要注意：将数据用对象的一个字段名进行命名是一种好习惯，以便于调用端了解 API 所返回的究竟是什么内容，是数据（data）还是错误（error），或者是别的什么信息。如果直接返回查询到的数据，比如 `res.send(doc)`，前端还需要进行很多额外的判断，比如区分这是查询到的数据还是报错还是别的什么，就会增加很多工作量，也容易出错。
 
 ---
 

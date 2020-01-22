@@ -380,6 +380,16 @@ return res.status(200).json({ data: doc })
 
 ---
 
+### Auth
+
+#### 概念辨析
+
+- Authentication: 身份验证/鉴权，用于判断传入的请求是否能被放行，比如用户相关的 API 要求调用端必须附带用户信息。
+- Authorization: 授权，用于判断传入的请求是否有权限执行特定操作，比如用户相关的 API 禁止普通用户删除其它用户。
+- Identification: 身份识别，用于判断是谁传入的请求，包括物理设备，运行环境，UserAgent 等等。
+
+---
+
 ### 接口测试
 
 #### 测试路由

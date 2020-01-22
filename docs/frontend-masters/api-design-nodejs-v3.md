@@ -498,3 +498,5 @@ export const Item = mongoose.model('item', itemSchema)
 const item = await Item.create({ ... })
 console.log(await Item.findById(item._id).exec())
 ```
+
+参考资料：[Mongoose - What does the exec function do?](https://stackoverflow.com/questions/31549857/mongoose-what-does-the-exec-function-do)

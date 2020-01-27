@@ -18,7 +18,7 @@
 
 #### Yarn 及 NPM
 
-在 macOS 上，`bcrypt` 这个库用 Yarn 总是无法用安装成功，最后用 npm 安装成功，具体操作见 [参考链接](https://github.com/mozilla/voice-web/issues/993#issuecomment-441209159)。
+在 macOS 上，bcrypt 这个库用 Yarn 总是无法用安装成功，最后用 npm 安装成功，具体操作见 [参考链接](https://github.com/mozilla/voice-web/issues/993#issuecomment-441209159)。
 
 ---
 
@@ -387,6 +387,14 @@ return res.status(200).json({ data: doc })
 - Authentication: 身份验证/鉴权，用于判断传入的请求是否能被放行，比如用户相关的 API 要求调用端必须附带用户信息。
 - Authorization: 授权，用于判断传入的请求是否有权限执行特定操作，比如用户相关的 API 禁止普通用户删除其它用户。
 - Identification: 身份识别，用于判断是谁传入的请求，包括物理设备，运行环境，UserAgent 等等。
+
+#### JWT 身份验证
+
+- JWT 可以实现**无状态**的用户身份验证。而 session 和 cookie 实现的是**有状态**的用户身份验证，需要将 session 或 cookie 存储在服务端。
+- JWT 身份验证是一种 bearer token stratagy，有了 bearer token，服务端就可以验证客户端的请求 header 中的 token。和 API Key 一样，JWT 也是诸多 bearer 验证方法中的一种。
+- 要创建 JWT，需要 API secret 以及 user object 之类的 payload。服务端分别对 secret 和 payload 进行 hash，然后再将两者结合，生成 JWT？其中前端传来的 payload，最好是能够识别用户身份的，比如用户的角色、ID 之类的数据。
+- JWT 是在服务端创建 token，并将其发给验证过的客户端的。之后客户端每次向服务端发送请求时，都要带上这个 token，后端就可以先 authentication，对请求进行鉴权；然后再 identification，识别用户的身份；最后再由 controller 决定是否要 authorization，即授权。
+- 服务端每次接收到请求时，先判断 token 是否是用自己的 secret 生成的，如果是，那么就能够拿到其中的 payload，即用户数据，然后就可以在后端的各个环节中使用了。
 
 ---
 

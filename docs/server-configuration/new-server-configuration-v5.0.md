@@ -28,6 +28,14 @@
 
 如果本机之前用密钥连接过 ECS 实例，那么本机的 `~/.ssh/known_hosts` 文件中保存的是旧的 host key。重装 ECS 实例的系统后，需要将本机该文件中旧的 host key 删除，才能够用密钥成功登录 ECS 实例。
 
+### 修改 root 用户的密码
+
+由于后面打算用非 root 用户通过 SSH 密钥对连接 ECS Linux 实例，而实例上的部分操作还需要 `sudo` 权限，所以这里先更改 root 用户的默认密码，以便后面执行默认命令。
+
+```bash
+$ passwd root # 不需要输入旧密码，直接输入两遍新密码即可
+```
+
 ### 导出 SSH 公钥
 
 由于后面打算用非 root 用户通过 SSH 密钥对连接 ECS Linux 实例，这里就需要先将保存在 root 用户目录下的公钥复制出来。
@@ -37,7 +45,7 @@ $ cd ~/.ssh
 $ cat authorized_keys # 复制公钥
 ```
 
-## 提升 SSH 连接安全性
+## 降低权限，提升安全
 
 ### 新建普通权限用户
 
@@ -67,4 +75,5 @@ $ chmod 400 authorized_keys # 设置文件为只读权限
 
 ```bash
 $ vi ~/.ssh/config # 将 User 字段后面的值由 root 改为 www
+$ ssh ecs
 ```

@@ -201,3 +201,20 @@ $ sudo env PATH=$PATH:/home/www/.nvm/versions/node/v12.14.1/bin /home/www/.confi
 ```
 
 配置好 PM2 持久化之后，重启服务器，在本机浏览器上访问后端项目的 URL，返回了数据，OK，配置成功！
+
+### Nginx 反向代理前后端程序
+
+话不多说，直接上 `/etc/nginx/conf.d/default.conf` 中的关键代码：
+
+```
+# 后端项目
+location /api/ {
+    proxy_pass http://localhost:3000/api/;
+}
+
+# 前端项目
+location / {
+    root   /home/www/repo/blog-fe;
+    index  page.html;
+}
+```

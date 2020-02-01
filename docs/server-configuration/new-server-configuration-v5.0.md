@@ -79,7 +79,7 @@ $ sudo vi /etc/ssh/sshd_config # 将 PermitRootLogin 字段的值由 yes 改为 
 $ sudo systemctl restart sshd # 重启 sshd 服务，使设置生效
 ```
 
-## 更新软件并重启
+### 更新软件并重启
 
 在 ECS 实例上执行以下命令。
 
@@ -87,3 +87,15 @@ $ sudo systemctl restart sshd # 重启 sshd 服务，使设置生效
 $ yum update -y # 更新所有已安装软件至最新版本
 $ reboot # 重启系统
 ```
+
+## 配置网站相关环境
+
+### 安装配置 Nginx
+
+按照 [Nginx 官方文档](http://nginx.org/en/linux_packages.html#RHEL-CentOS) 的流程，安装 Nginx。
+
+修改 `/etc/nginx/conf.d/default.conf`，将 `server` 中的 `server_name` 修改为自己网站的域名。
+
+### 安装配置 Certbot
+
+根据 [Certbot 官方文档](https://certbot.eff.org/lets-encrypt/centosrhel7-nginx) 的流程，安装 Certbot。

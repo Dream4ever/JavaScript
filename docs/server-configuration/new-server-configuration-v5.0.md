@@ -162,3 +162,27 @@ $ nvm install --lts # 安装 LTS 版本的 Node.js
 # 以下命令仅供参考，以官网最新文档为准
 $ curl --silent --location https://dl.yarnpkg.com/rpm/yarn.repo | sudo tee /etc/yum.repos.d/yarn.repo
 ```
+
+### 安装配置 Docker
+
+在 CentOS 上安装配置 MongoDB 太麻烦了，还是在 Docker 中安装吧，这就需要先把 Docker 装上，按照 [Get Docker Engine - Community for CentOS](https://docs.docker.com/install/linux/docker-ce/centos/) 中的流程操作即可。
+
+安装完成之后，再按照 [Post-installation steps for Linux](https://docs.docker.com/install/linux/linux-postinstall/) 中所说的，执行 `sudo systemctl enable docker`，让 Docker 开机启动。
+
+### 安装配置 MongoDB in Docker
+
+按照 [官方页面](https://hub.docker.com/_/mongo) 安装 MongoDB 即可。
+
+安装完成后，执行 `sudo docker run --name mongo -p 27017:27017 -d --restart unless-stopped mongo` 启动 MongoDB，这里记得要指定端口，否则 Node.js 程序将连接失败。另外，`--restart unless-stopped` 参数能够保证服务器重启之后， MongoDB 镜像也会自动启动，这里镜像的自动启动与 Docker 本身的自动启动是不同的，要注意。
+
+### 安装配置 PM2
+
+Node.js 环境和 MongoDB 数据库配置好了之后，就可以配置 Node.js 项目的持久化了。前面是在非 root 用户环境下安装的 Yarn，这里还需要手动配置 `yarn global add` 命令存放全局库的位置，否则用 Yarn 全局安装库之后，会发现调用不了这些库。参考 [how to avoid using sudo while installing global packages in linux #2108](https://github.com/yarnpkg/yarn/issues/2108) 中的方法，依次执行以下命令，完成 Yarn 全局库安装路径的配置。
+
+```bash
+$ mkdir ~/.yarn # 建立用于保存全局库的文件夹
+$ yarn config set prefix ~/.yarn # 设置 Yarn 全局库的安装路径
+# 将后面的内容添加至 ~/.bashrc 文件中 export PATH="$PATH:`yarn global bin`"
+```
+
+在用户 www 的 `~/repo` 目录下将后端项目用 git clone 至本地，并用 Yarn 安装依赖库。

@@ -22,7 +22,7 @@
 
 如果本机之前未通过 SSH 密钥对连接过 ECS 实例，则按照教程 [使用SSH密钥对连接Linux实例](https://help.aliyun.com/document_detail/51798.html) 进行配置即可。
 
-其中如果用的是“在支持SSH命令的环境中使用密钥对”这种方式，即使按照“通过config文件配置”的流程来操作，也要把前一小节“通过命令配置”的流程做一遍，这样才能够确保私钥文件的权限符合密钥登录的要求，否则将无法登录。
+其中如果用的是 [在支持SSH命令的环境中使用密钥对](https://help.aliyun.com/document_detail/51798.html#title-7je-5ba-sm2) 这种方式，即使按照 [通过config文件配置](https://help.aliyun.com/document_detail/51798.html#title-ii4-zmw-zxi) 的流程来操作，也要把前一小节 [通过命令配置](https://help.aliyun.com/document_detail/51798.html#title-7je-5ba-sm2) 的流程做一遍，这样才能够确保私钥文件的权限符合密钥登录的要求，否则将无法登录。
 
 ### 本机非全新连接
 

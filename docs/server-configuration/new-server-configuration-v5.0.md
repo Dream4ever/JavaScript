@@ -18,7 +18,7 @@
 
 ## SSH 密钥对连接 ECS 实例
 
-### 本机全新连接
+### 本机首次连接
 
 如果本机之前未通过 SSH 密钥对连接过 ECS 实例，则按照教程 [使用SSH密钥对连接Linux实例](https://help.aliyun.com/document_detail/51798.html) 进行配置即可。
 

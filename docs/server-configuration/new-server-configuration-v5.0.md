@@ -16,7 +16,7 @@
 
 在弹出的“MFA验证”对话框中，输入手机 APP “Authenticator” 中该 ECS 实例所属阿里云账号的验证码。点击右下角的按钮，稍候片刻，ECS 实例就装上最新版的 CentOS 了。
 
-## SSH 密钥对连接 ECS Linux 实例
+## SSH 密钥对连接 ECS 实例
 
 ### 本机全新连接
 
@@ -30,7 +30,7 @@
 
 ### 修改 root 用户的密码
 
-由于后面打算用非 root 用户通过 SSH 密钥对连接 ECS Linux 实例，而实例上的部分操作还需要 `sudo` 权限，所以这里先更改 root 用户的默认密码，以便后面执行默认命令。
+因为不知道 root 用户的默认密码是什么，所以在首次通过 SSH 密钥对连接到 ECS 实例之后，就把 root 用户的密码改了，免得之后还需要密码。
 
 ```bash
 $ passwd root # 不需要输入旧密码，直接输入两遍新密码即可
@@ -38,14 +38,14 @@ $ passwd root # 不需要输入旧密码，直接输入两遍新密码即可
 
 ### 导出 SSH 公钥
 
-由于后面打算用非 root 用户通过 SSH 密钥对连接 ECS Linux 实例，这里就需要先将保存在 root 用户目录下的公钥复制出来。
+由于后面打算用非 root 用户通过 SSH 密钥对连接 ECS 实例，这里就需要先将保存在 root 用户目录下的公钥复制出来。
 
 ```bash
 $ cd ~/.ssh
 $ cat authorized_keys # 复制公钥
 ```
 
-## 降低权限，提升安全
+## 服务器安全加固
 
 ### 新建普通权限用户
 
@@ -54,7 +54,9 @@ $ cat authorized_keys # 复制公钥
 ```bash
 $ adduser www # 新建用户
 $ passwd www # 设置密码
-$ su www # 切换至用户 www
+$ usermod -aG wheel www # 将用户 www 加入 wheel 用户组，可执行 sudo 命令
+$ su - www # 切换至用户 www
+$ sudo ls -la /root # 测试用户 www 是否能执行 sudo 命令，首次执行需要输入用户 www 的密码
 ```
 
 ### 配置新用户的 SSH 公钥
@@ -63,9 +65,8 @@ $ su www # 切换至用户 www
 
 ```bash
 $ cd ~ # 切换至当前用户的用户目录
-$ mkdir .ssh && chmod 700 .ssh # 新建 .ssh 文件夹并设置文件夹权限
-$ touch authorized_keys # 新建公钥文件并设置权限
-$ vi authorized_keys # 将 root 用户那里得到的公钥复制过来
+$ mkdir .ssh && chmod 700 .ssh && cd .ssh # 新建 .ssh 文件夹并设置文件夹权限
+$ sudo cat /root/.ssh/authorized_keys > ./authorized_keys # 将 root 用户的公钥复制过来
 $ chmod 400 authorized_keys # 设置文件为只读权限
 ```
 
@@ -75,5 +76,13 @@ $ chmod 400 authorized_keys # 设置文件为只读权限
 
 ```bash
 $ vi ~/.ssh/config # 将 User 字段后面的值由 root 改为 www
-$ ssh ecs
+$ ssh ecs # 正常情况下，严格按照前面的流程操作，这里就能够以 www 用户的身份连接至服务器
+```
+
+### 禁止 root 用户 SSH 连接至服务器
+
+在 ECS 实例上执行以下命令。
+
+```bash
+$ sudo vi /etc/ssh/sshd_config # 将 PermitRootLogin 字段的值由 yes 改为 no
 ```

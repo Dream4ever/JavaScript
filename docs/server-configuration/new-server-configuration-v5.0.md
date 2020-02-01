@@ -177,7 +177,9 @@ $ curl --silent --location https://dl.yarnpkg.com/rpm/yarn.repo | sudo tee /etc/
 
 ### 安装配置 PM2
 
-Node.js 环境和 MongoDB 数据库配置好了之后，就可以配置 Node.js 项目的持久化了。前面是在非 root 用户环境下安装的 Yarn，这里还需要手动配置 `yarn global add` 命令存放全局库的位置，否则用 Yarn 全局安装库之后，会发现调用不了这些库。参考 [how to avoid using sudo while installing global packages in linux #2108](https://github.com/yarnpkg/yarn/issues/2108) 中的方法，依次执行以下命令，完成 Yarn 全局库安装路径的配置。
+Node.js 环境和 MongoDB 数据库配置好了之后，就可以配置 Node.js 项目的持久化了。前面是在非 root 用户环境下安装的 Yarn，这里还需要手动配置 Yarn 存放全局库的位置，否则用 `yarn global add` 全局安装库会失败，虽然安装过程看起来正常，但安全完成后调用全局库的命令，就会报错。
+
+参考 [how to avoid using sudo while installing global packages in linux #2108](https://github.com/yarnpkg/yarn/issues/2108) 中的方法，完成 Yarn 全局库安装路径的配置。
 
 ```bash
 $ mkdir ~/.yarn # 建立用于保存全局库的文件夹

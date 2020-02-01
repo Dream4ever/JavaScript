@@ -1,6 +1,6 @@
 # 云服务器配置笔记 v5.0
 
-> 2020年02月01日10:08:19
+> 2020年02月01日 10:08:19
 
 ## 系统安装
 
@@ -79,6 +79,11 @@ $ sudo vi /etc/ssh/sshd_config # 将 PermitRootLogin 字段的值由 yes 改为 
 $ systemctl restart sshd # 重启 sshd 服务，使设置生效
 ```
 
-## 更新软件
+## 更新软件并重启
 
-配置好 SSH 之后，连接至服务器，执行 `yum update -y`，更新系统所有已安装的软件包。
+在 ECS 实例上执行以下命令。
+
+```bash
+$ yum update -y # 更新所有已安装软件至最新版本
+$ reboot # 重启系统
+```

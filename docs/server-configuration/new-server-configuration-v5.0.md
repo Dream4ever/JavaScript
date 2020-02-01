@@ -78,3 +78,7 @@ $ ssh ecs # 正常情况下，严格按照前面的流程操作，这里就能�
 $ sudo vi /etc/ssh/sshd_config # 将 PermitRootLogin 字段的值由 yes 改为 no
 $ systemctl restart sshd # 重启 sshd 服务，使设置生效
 ```
+
+## 更新软件
+
+配置好 SSH 之后，连接至服务器，执行 `yum update -y`，更新系统所有已安装的软件包。

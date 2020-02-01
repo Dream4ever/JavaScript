@@ -187,4 +187,17 @@ $ yarn config set prefix ~/.yarn # 设置 Yarn 全局库的安装路径
 # 将后面的内容添加至 ~/.bashrc 文件中 export PATH="$PATH:`yarn global bin`"
 ```
 
-在用户 www 的 `~/repo` 目录下将后端项目用 git clone 至本地，并用 Yarn 安装依赖库。
+在用户 www 的 `~/repo` 目录下将后端项目 blog-be 用 git clone 至本地，并用 Yarn 安装依赖库，以便后面 PM2 配置项目持久化。
+
+上面配置好了 Yarn 全局库的安装路径，这里就可以全局安装并配置 PM2 了：
+
+```bash
+$ yarn global add pm2
+$ cd ~/repo/blog-be
+$ pm2 start ./dist/index.js --name blog-be
+$ pm2 startup
+# 然后按照 PM2 给出的提示，执行下面的命令，实现 Node.js 项目的持久化
+$ sudo env PATH=$PATH:/home/www/.nvm/versions/node/v12.14.1/bin /home/www/.config/yarn/global/node_modules/pm2/bin/pm2 startup systemd -u www --hp /home/www
+```
+
+配置好 PM2 持久化之后，重启服务器，在本机浏览器上访问后端项目的 URL，返回了数据，OK，配置成功！

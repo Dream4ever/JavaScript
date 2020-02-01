@@ -88,7 +88,7 @@ $ yum update -y # 更新所有已安装软件至最新版本
 $ reboot # 重启系统
 ```
 
-## 配置网站相关环境
+## 配置网站环境
 
 ### 安装配置 Nginx
 
@@ -131,4 +131,15 @@ Certbot 安装完成后，执行 `sudo certbot --nginx`，开始配置 Nginx SSL
 
 ```bash
 $ echo "0 0,12 * * * root python -c 'import random; import time; time.sleep(random.random() * 3600)' && certbot renew" | sudo tee -a /etc/crontab > /dev/null
+```
+
+### 安装配置 Git
+
+CentOS 的 yum 源安装的 Git 版本太旧，所以需要进行额外配置，才能安装新的 Git，参考 [How to Install Git on CentOS 7](https://linuxize.com/post/how-to-install-git-on-centos-7/) 这篇文章做即可。
+
+安装完成 Git 之后，再配置提交代码时要用的 git 用户名和邮箱。
+
+```bash
+$ git config --global user.name "Your Name"
+$ git config --global user.email "youremail@yourdomain.com"
 ```

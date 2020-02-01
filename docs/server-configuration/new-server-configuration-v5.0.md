@@ -75,7 +75,8 @@ $ ssh ecs # 正常情况下，严格按照前面的流程操作，这里就能�
 在 ECS 实例上执行以下命令。
 
 ```bash
-$ sudo vi /etc/ssh/sshd_config # 将 PermitRootLogin 字段的值由 yes 改为 no
+# 备份 sshd 配置文件，并将 PermitRootLogin 字段的值由 yes 改为 no
+$ sudo cp sshd_config sshd_config~ && sudo sed -i 's/^PermitRootLogin yes$/PermitRootLogin no/g' sshd_config
 $ sudo systemctl restart sshd # 重启 sshd 服务，使设置生效
 ```
 

@@ -76,4 +76,5 @@ $ ssh ecs # 正常情况下，严格按照前面的流程操作，这里就能�
 
 ```bash
 $ sudo vi /etc/ssh/sshd_config # 将 PermitRootLogin 字段的值由 yes 改为 no
+$ systemctl restart sshd # 重启 sshd 服务，使设置生效
 ```

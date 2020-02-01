@@ -125,11 +125,8 @@ Certbot 安装完成后，执行 `sudo certbot --nginx`，开始配置 Nginx SSL
 
 完成上面的操作之后，Nginx 会自动重启，这时候访问域名 https://hewei.in ，如果能正常访问，说明 Certbot 配置成功。
 
+最后再执行下面的命令，实现 SSL 证书的定时更新。
 
-
-
-
-
-
-
-
+```bash
+$ echo "0 0,12 * * * root python -c 'import random; import time; time.sleep(random.random() * 3600)' && certbot renew" | sudo tee -a /etc/crontab > /dev/null
+```

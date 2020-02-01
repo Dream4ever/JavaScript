@@ -143,3 +143,21 @@ CentOS 的 yum 源安装的 Git 版本太旧，所以需要进行额外配置，
 $ git config --global user.name "Your Name"
 $ git config --global user.email "youremail@yourdomain.com"
 ```
+
+### 安装配置 Node 环境
+
+按照 [nvm-sh/nvm](https://github.com/nvm-sh/nvm) 中的说明，安装 nvm，顺便装上 LTS 版本的 Node.js。
+
+```bash
+# 以下命令仅供参考，以官网最新文档为准
+$ curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.2/install.sh | bash
+# 安装完成后退出 SSH 连接再重新连接，以便 nvm 安装生效
+$ nvm install --lts # 安装 LTS 版本的 Node.js
+```
+
+再按照 [Installation | Yarn](https://legacy.yarnpkg.com/en/docs/install#centos-stable) 中的说明，安装 Yarn。
+
+```bash
+# 以下命令仅供参考，以官网最新文档为准
+$ curl --silent --location https://dl.yarnpkg.com/rpm/yarn.repo | sudo tee /etc/yum.repos.d/yarn.repo
+```

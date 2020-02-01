@@ -94,8 +94,42 @@ $ reboot # 重启系统
 
 按照 [Nginx 官方文档](http://nginx.org/en/linux_packages.html#RHEL-CentOS) 的流程，安装 Nginx。
 
-修改 `/etc/nginx/conf.d/default.conf`，将 `server` 中的 `server_name` 修改为自己网站的域名。
+执行 `sudo service nginx start`，启动 Nginx，然后访问域名 http://hewei.in ，一般来说，应该是可以正常访问的。
+
+修改 `/etc/nginx/conf.d/default.conf`，将 `server` 中的 `server_name` 修改为自己网站的域名，这样后面可以方便 Certbot 进行自动配置。
 
 ### 安装配置 Certbot
 
 根据 [Certbot 官方文档](https://certbot.eff.org/lets-encrypt/centosrhel7-nginx) 的流程，安装 Certbot。
+
+注意：如果严格按照官方文档安装，那么在执行命令 `sudo certbot --nginx` 配置 Nginx SSL 证书时，会遇到 Python 报错的情况。这种情况下，可以按照 [ImportError: cannot import name UnrewindableBodyError](https://github.com/certbot/certbot/issues/7645#issuecomment-569013707) 给出的方法操作，然后重新安装 Certbot 即可。
+
+```bash
+$ sudo pip uninstall requests
+$ sudo pip uninstall urllib3
+$ sudo yum remove python-urllib3
+$ sudo yum remove python-requests
+$ sudo yum install python-urllib3
+$ sudo yum install python-requests
+$ sudo yum remove certbot python2-certbot-nginx
+$ sudo yum install certbot python2-certbot-nginx
+```
+
+Certbot 安装完成后，执行 `sudo certbot --nginx`，开始配置 Nginx SSL 证书。
+
+- 首先会提示用户输入邮箱，用于接收相关邮件
+- 然后需要用户同意服务协议
+- 接着需要用户选择是否将邮箱地址告知 EFF
+- 然后选择需要启用 HTTPS 的域名，前面在 `/etc/nginx/conf.d/default.conf` 中设置了 `server_name`，这里就会显示出来
+- 最后选择是否将 HTTP 请求重定向至 HTTPS
+
+完成上面的操作之后，Nginx 会自动重启，这时候访问域名 https://hewei.in ，如果能正常访问，说明 Certbot 配置成功。
+
+
+
+
+
+
+
+
+

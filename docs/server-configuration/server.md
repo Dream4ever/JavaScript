@@ -1012,7 +1012,27 @@ sudo docker run --detach \
 
 先按照 [使用SSH密钥对](https://help.aliyun.com/document_detail/51793.html) 一文中的方法，创建 SSH 密钥对，并与阿里云 ECS 实例绑定。
 
-再按照 [使用SSH密钥对连接Linux实例](https://help.aliyun.com/document_detail/51798.html) 一文中的方法，使用 SSH 密钥对链接实例。在 macOS 环境下，建议设置 SSH 配置文件来简化 SSH 连接的操作。
+再按照 [使用SSH密钥对连接Linux实例](https://help.aliyun.com/document_detail/51798.html) 一文中的方法，使用 SSH 密钥对链接实例。在 macOS 环境下，建议 [设置 SSH 配置文件](https://help.aliyun.com/document_detail/51798.html#title-7je-5ba-sm2) 来简化 SSH 连接的操作。
+
+注意：按照上面的教程配置，用 SSH 密钥对登录的话，默认是登录为 root 用户。如果想用其它用户登录，那么需要将服务器上 root 用户 `./.ssh/authorized_keys` 文件中的密钥复制出来，然后做如下操作，即可实现非 root 用户通过 SSH 密钥对登录。
+
+```bash
+# 服务端做如下操作
+$ sudo su www
+$ cd ~
+$ mkdir .ssh
+$ chmod 700 .ssh
+$ vi .ssh/authorized_keys
+# 按i键进入编辑模式，粘贴公钥内容，再按Esc键退出编辑模式，输入:x，即可保存并推出
+$ chmod 600 .ssh/authorized_keys
+$ exit
+```
+
+```bash
+# 客户端做如下操作
+$ vi ~/.ssh/config
+# 将 User 字段后面的值改为需要登录的用户，如 www
+```
 
 ## 更新软件
 

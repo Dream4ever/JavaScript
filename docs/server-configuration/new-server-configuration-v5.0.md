@@ -94,6 +94,8 @@ $ reboot # 重启系统
 
 按照 [Nginx 官方文档](http://nginx.org/en/linux_packages.html#RHEL-CentOS) 的流程，安装 Nginx。
 
+执行 `sudo systemctl enable nginx`，让 Nginx 在系统重启后自动运行。
+
 执行 `sudo service nginx start`，启动 Nginx，然后访问域名 http://hewei.in ，一般来说，应该是可以正常访问的。
 
 修改 `/etc/nginx/conf.d/default.conf`，将 `server` 中的 `server_name` 修改为自己网站的域名，这样后面可以方便 Certbot 进行自动配置。

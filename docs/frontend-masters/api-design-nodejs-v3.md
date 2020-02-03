@@ -484,7 +484,7 @@ export const Item = mongoose.model('item', itemSchema)
 
 #### exec
 
-在 Mongoose 中，查询语句之后如果不加上 `.exec()`，那么返回的是假的 Promise；加了 `.exec()` 之后，就相当于告诉 Mongoose，我的查询语句写完了，现在正式开始查询吧，这个时候得到的才是真正的 Promise。
+在 Mongoose 中，查询语句之后如果不加上 `.exec()`，那么返回的是假的 Promise；加上 `.exec()` 之后，就相当于告诉 Mongoose，我的查询语句写完了，现在正式开始查询吧，这个时候得到的才是真正的 Promise。
 
 ```js
 const item = await Item.create({ ... })

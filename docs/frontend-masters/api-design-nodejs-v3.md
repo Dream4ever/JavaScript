@@ -2,8 +2,6 @@
 
 [API Design in Node.js, v3](https://frontendmasters.com/courses/api-design-nodejs-v3/)
 
----
-
 ### 环境配置
 
 #### 在 macOS 上安装 MongoDB
@@ -12,15 +10,11 @@
 
 简而言之，就是通过 Homebrew 安装 MongoDB，并按照官方建议，用 brew 将 MongoDB 以服务的方式运行在后台。
 
----
-
 ### 注意事项
 
 #### Yarn 及 NPM
 
 在 macOS 上，bcrypt 这个库用 Yarn 总是无法用安装成功，最后用 npm 安装成功，具体操作见 [参考链接](https://github.com/mozilla/voice-web/issues/993#issuecomment-441209159)。
-
----
 
 ### Express 中间件
 
@@ -113,8 +107,6 @@ app.get('/', log, (req, res) => {
 中间件用于将数据进行处理之后，传给后续的中间件或路由进行下一步处理。而控制器则用于对数据进行处理，并将处理后的结果返回给 API 调用者。
 
 可以将控制器理解为请求栈中，最终的那个中间件。
-
----
 
 ### Express 路由
 
@@ -215,8 +207,6 @@ router.route('/cat/:id')
   .put()
   .delete()
 ```
-
----
 
 ### Express 控制器
 
@@ -378,8 +368,6 @@ return res.status(200).json({ data: doc })
 
 这里有一点要注意：将数据用对象的一个字段名进行命名是一种好习惯，以便于调用端了解 API 所返回的究竟是什么内容，是数据（data）还是错误（error），或者是别的什么信息。如果直接返回查询到的数据，比如 `res.send(doc)`，前端还需要进行很多额外的判断，比如区分这是查询到的数据还是报错还是别的什么，就会增加很多工作量，也容易出错。
 
----
-
 ### Auth
 
 #### 概念辨析
@@ -395,8 +383,6 @@ return res.status(200).json({ data: doc })
 - 要创建 JWT，需要 API secret 以及 user object 之类的 payload。服务端分别对 secret 和 payload 进行 hash，然后再将两者结合，生成 JWT？其中前端传来的 payload，最好是能够识别用户身份的，比如用户的角色、ID 之类的数据。
 - JWT 是在服务端创建 token，并将其发给验证过的客户端的。之后客户端每次向服务端发送请求时，都要带上这个 token，后端就可以先 authentication，对请求进行鉴权；然后再 identification，识别用户的身份；最后再由 controller 决定是否要 authorization，即授权。
 - 服务端每次接收到请求时，先判断 token 是否是用自己的 secret 生成的，如果是，那么就能够拿到其中的 payload，即用户数据，然后就可以在后端的各个环节中使用了。
-
----
 
 ### 接口测试
 
@@ -453,8 +439,6 @@ export default router
 ```
 
 测试和业务的代码分别按照上面的方式写，测试就可正常通过。
-
----
 
 ### MongoDB & Mongoose
 

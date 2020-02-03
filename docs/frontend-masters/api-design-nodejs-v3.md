@@ -14,7 +14,7 @@
 
 #### Yarn 及 NPM
 
-在 macOS 上，bcrypt 这个库用 Yarn 总是无法用安装成功，最后用 npm 安装成功，具体操作见 [参考链接](https://github.com/mozilla/voice-web/issues/993#issuecomment-441209159)。
+因为课程已经是一年多以前的了，项目中的依赖库版本也没怎么更新，所以如果遇到用 Yarn 或 NPM 安装依赖库会失败的情况，比如 `bcrypt` 这个库，那么可以先删除对应的库，然后重新安装，这样会安装最新版，通常都能成功。
 
 ### Express 中间件
 

@@ -1,3 +1,7 @@
+# API Design in Node.js, v3 课程学习笔记
+
+这门课程是当初在研究 Node.js API 设计时，在网上找到的，当时大致看了一下 GitHub 上对应项目的代码，觉得这门课程不错，于是买了一个月的 Frontend Masters 会员，把这门课程认真学了一遍，并且把关键部分都做了笔记。
+
 ### 课程地址
 
 [API Design in Node.js, v3](https://frontendmasters.com/courses/api-design-nodejs-v3/)

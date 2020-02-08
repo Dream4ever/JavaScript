@@ -1,5 +1,0 @@
-node_modules
-docs/.vuepress/dist
-yarn.lock
-yarn-error.log
-package-lock.json

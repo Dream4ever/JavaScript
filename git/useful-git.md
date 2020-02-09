@@ -558,3 +558,9 @@ git update-index --skip-worktree <file>
 ```bash
 git update-index --no-skip-worktree <file>
 ```
+
+参考链接：
+
+- [How to make Git “forget” about a file that was tracked but is now in .gitignore?](https://stackoverflow.com/a/20241145/2667665)
+- [Git - Difference Between 'assume-unchanged' and 'skip-worktree'](https://stackoverflow.com/a/13631525/2667665)
+- [Undo git update-index --skip-worktree](https://stackoverflow.com/a/11131211/2667665)

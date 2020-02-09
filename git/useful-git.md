@@ -544,3 +544,17 @@ git commit --date="1 day ago" -m "commit message"
 ```
 
 参考链接：[How do I make a Git commit in the past?](https://stackoverflow.com/questions/3895453/how-do-i-make-a-git-commit-in-the-past)
+
+### 不再跟踪某个文件新的变更
+
+某个文件之前的变更一直在用 git 跟踪，但是之后的变更不想再被跟踪了，比如保存关键信息的配置文件，之前随便填了一些内容，现在填的是实际的数据，就需要实现这种需求。这种要求，一条命令就可以搞定：
+
+```bash
+git update-index --skip-worktree <file>
+```
+
+如果要撤销该操作，恢复对该文件变更的跟踪，也很简单：
+
+```bash
+git update-index --no-skip-worktree <file>
+```

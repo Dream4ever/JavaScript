@@ -95,7 +95,7 @@ $ reboot # 重启系统
 
 按照 [Nginx 官方文档](http://nginx.org/en/linux_packages.html#RHEL-CentOS) 的流程，安装 Nginx。
 
-执行 `sudo systemctl enable nginx`，让 Nginx 在系统重启后自动运行。
+执行 `sudo systemctl enable nginx`，让 Nginx 在每次进入系统后自动运行。
 
 执行 `sudo service nginx start`，启动 Nginx，然后访问域名 http://hewei.in ，一般来说，应该是可以正常访问的。
 

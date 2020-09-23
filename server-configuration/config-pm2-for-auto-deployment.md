@@ -1,4 +1,4 @@
-# 配置 PM2 实现代码自动发布
+# 配置 PM2 实现代码自动发布 v1.1 【待完成】
 
 PM2 不仅可以实现 Node.js 项目的持久化，还能实现代码的自动发布，在本机更改代码并推送到 GitHub 上之后，通过一行命令，就可以让服务端自动下载最新的代码并编译执行，以下是具体流程。
 
@@ -7,6 +7,40 @@ PM2 不仅可以实现 Node.js 项目的持久化，还能实现代码的自动�
 - [Windows 下 Node.js 程序保活 - PM2 方案](https://github.com/Dream4ever/Knowledge-Base/issues/59)
 - [Quick Start](https://pm2.keymetrics.io/docs/usage/quick-start/)
 - [Deployment](https://pm2.keymetrics.io/docs/usage/deployment/)
+
+## 最新配置文件
+
+```js
+module.exports = {
+  apps : [
+    {
+      name: "API-Center",
+      // Node 项目编译后的路径
+      cwd: "c:\\Project\\apicenter\\dist",
+      // （上面 cwd 路径下的）项目入口文件
+      script: 'index.js',
+      // 监控 cwd 路径下所有文件更改，更改后自动重启项目
+      watch: '.',
+      // 等项目 process.send('ready') 之后
+      // 才认为项目已启动就绪
+      wait_ready: true,
+      // 每个 CPU 内核启动一个 Node 实例
+      instances: "max",
+      // 配合上面的 instances 指令
+      exec_mode: "cluster",
+      // 正常日志的路径
+      out_file: 'c:\\Users\\HeWei.DESKTOP-4HDDQUK\\.pm2\\logs\\API-Center-out.log',
+      // 错误日志的路径
+      error_file: 'c:\\Users\\HeWei.DESKTOP-4HDDQUK\\.pm2\\logs\\API-Center-error.log',
+      // 每条日志都带时间戳
+      time: true
+    }
+  ]
+};
+
+```
+
+---
 
 ## 先期准备
 

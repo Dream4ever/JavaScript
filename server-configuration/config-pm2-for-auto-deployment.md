@@ -4,7 +4,7 @@ PM2 不仅可以实现 Node.js 项目的持久化，还能实现代码的自动�
 
 ## 参考文档
 
-- [使用pm2部署你的项目防止过劳死](http://xugaoyang.com/post/5aa3a4d0b1745b11c007ffd6)
+- [Windows 下 Node.js 程序保活 - PM2 方案](hhttps://github.com/Dream4ever/Knowledge-Base/issues/59)
 - [Quick Start](http://pm2.keymetrics.io/docs/usage/quick-start/)
 - [Deployment](http://pm2.keymetrics.io/docs/usage/deployment/)
 

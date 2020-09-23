@@ -37,8 +37,11 @@ module.exports = {
     }
   ]
 };
-
 ```
+
+## 注意事项
+
+每次升级 PM2 版本时，都按文档 [Updating PM2](https://pm2.keymetrics.io/docs/usage/update-pm2/) 给出的标准流程来操作，保证 PM2 顺利升级，且不影响其所管理的项目。
 
 ---
 

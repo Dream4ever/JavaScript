@@ -55,3 +55,7 @@ $ yarn config get registry
 
 - npm 要用 [raineorshine / npm-check-updates](https://github.com/raineorshine/npm-check-updates) 或者 [dylang / npm-check](https://github.com/dylang/npm-check) 检查当前项目或全局安装的包有哪些可以升级
 - Yarn 自带该功能，执行 `yarn upgrade XXX --latest` 或 `yarn global upgrade XXX --latest`
+
+---
+
+联动文章：[用 PM2 管理 Node.js 后端项目](https://github.com/Dream4ever/blog-articles/blob/master/server-configuration/pm2-tutorial.md)

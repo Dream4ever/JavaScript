@@ -36,6 +36,9 @@ $ yarn config get registry
 
 ## 升级 npm 包
 
+用 npm 或者 yarn 来升级 npm 包时，默认是按照 package.json 中的包版本标识来升级到可用的最高版本的。
+
+如果想跳过 package.json 的版本要求，npm 就要用 [raineorshine / npm-check-updates](https://github.com/raineorshine/npm-check-updates) 或者 [dylang / npm-check](https://github.com/dylang/npm-check) 这种开源库来检查。Yarn 的话就很简单了，直接用 `yarn upgrade XXX --latest` 即可。
 
 ```shell
 

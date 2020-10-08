@@ -1,0 +1,42 @@
+# Node.js 包管理
+
+## 包管理器安装
+
+安装 Node.js 时，会连同 npm 这个默认的包管理器一起安装上。
+
+但平时使用的话，还是建议用 Yarn，安装这部分没什么好说的，下载安装包然后按照默认设置安装即可。
+
+## 安装后先配置下载源
+
+用如下命令给 npm 和 Yarn 配置淘宝源，加速 npm 包下载。
+
+```shell
+# npm 配置淘宝源
+$ npm config set registry=https://registry.npm.taobao.org
+
+# npm 查看源设置是否成功
+$ npm config get registry
+
+# Yarn 配置淘宝源
+$ yarn config set registry https://registry.npm.taobao.org
+
+# Yarn 查看源设置是否成功
+$ yarn config get registry
+```
+
+## 理解 npm 包版本标识
+
+版本规范：对于 npm 包的版本号 `1.2.3`，第一部分的数字是大版本号（major），第二部分是中版本号（minor），第三部分是小版本号（patch）。
+
+带波浪线的版本号 `~version` 表示只会升级小版本号，比如 `~1.2.3` 就不会升级到 `1.3.0`，只能升级到 `1.2.X` 的最新版。
+
+而带尖号的版本号 `^version` 表示只会升级中版本号，比如 `^1.2.3` 就不会升级到 `2.0.0`，只能升级到 `1.X` 的最新版。
+
+[What's the difference between tilde(~) and caret(^) in package.json?](https://stackoverflow.com/questions/22343224/whats-the-difference-between-tilde-and-caret-in-package-json)
+
+## 升级 npm 包
+
+
+```shell
+
+```

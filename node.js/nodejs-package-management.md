@@ -24,9 +24,9 @@ $ yarn config set registry https://registry.npm.taobao.org
 $ yarn config get registry
 ```
 
-## 理解 npm 包版本标识
+## 理解 npm 包版本号
 
-版本规范：对于 npm 包的版本号 `1.2.3`，第一部分的数字是大版本号（major），第二部分是中版本号（minor），第三部分是小版本号（patch）。
+版本规范：对于 npm 包的版本号 `1.2.3`，第一个小数点之前数字是大版本号（major），两个小数点中间的是中版本号（minor），第二个小数点之后的是小版本号（patch）。
 
 带波浪线的版本号 `~version` 表示只会升级小版本号，比如 `~1.2.3` 就不会升级到 `1.3.0`，只能升级到 `1.2.X` 的最新版。
 

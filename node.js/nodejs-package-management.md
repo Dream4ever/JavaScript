@@ -28,11 +28,22 @@ $ yarn config get registry
 
 版本规范：对于 npm 包的版本号 `1.2.3`，第一个小数点之前数字是大版本号（major），两个小数点中间的是中版本号（minor），第二个小数点之后的是小版本号（patch）。
 
-带波浪线的版本号 `~version` 表示只会升级小版本号，比如 `~1.2.3` 就不会升级到 `1.3.0`，只能升级到 `1.2.X` 的最新版。
+对于带波浪线的版本号 `~version`，升级范围如下，用一句来概括就是：如果有中版本号，就可以升级小版本；如果没有，就可以升级中版本。
 
-而带尖号的版本号 `^version` 表示只会升级中版本号，比如 `^1.2.3` 就不会升级到 `2.0.0`，只能升级到 `1.X` 的最新版。
+- `~1.2.3 := >=1.2.3 <1.3.0`
+- `~1.2 := >=1.2.0 <1.3.0`
+- `~1 := >=1.0.0 <2.0.0`
 
-[What's the difference between tilde(~) and caret(^) in package.json?](https://stackoverflow.com/questions/22343224/whats-the-difference-between-tilde-and-caret-in-package-json)
+对于带尖号的版本号 `^version`，升级范围如下，用一句来概括就是：左边的非 0 版本号都可以升级。
+
+- `^1.2.3 := >=1.2.3 <2.0.0`
+- `^0.2.3 := >=0.2.3 <0.3.0`
+- `^0.0.3 := >=0.0.3 <0.0.4`
+
+参考资料：
+
+- [What's the difference between tilde(~) and caret(^) in package.json?](https://stackoverflow.com/questions/22343224/whats-the-difference-between-tilde-and-caret-in-package-json)
+- [npm-semver | The semantic versioner for npm](https://docs.npmjs.com/misc/semver)
 
 ## 升级 npm 包
 

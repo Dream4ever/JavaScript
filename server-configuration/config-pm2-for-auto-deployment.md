@@ -2,6 +2,10 @@
 
 PM2 不仅可以实现 Node.js 项目的持久化，还能实现代码的自动发布，在本机更改代码并推送到 GitHub 上之后，通过一行命令，就可以让服务端自动下载最新的代码并编译执行，以下是具体流程。
 
+## 注意事项
+
+每次升级 Node.js 版本时，都按文档 [Updating PM2](https://pm2.keymetrics.io/docs/usage/update-pm2/) 给出的标准流程来操作，保证不影响 PM2 所管理的项目。
+
 ## 参考文档
 
 - [Windows 下 Node.js 程序保活 - PM2 方案](https://github.com/Dream4ever/Knowledge-Base/issues/59)
@@ -57,10 +61,6 @@ $ pm2 set pm2-logrotate:workerInterval 3600
 # 每天于 03:20 这个时刻强制检查日志文件体积
 $ pm2 set pm2-logrotate:rotateInterval 0 20 3 * * *
 ```
-
-## 注意事项
-
-每次升级 PM2 版本时，都按文档 [Updating PM2](https://pm2.keymetrics.io/docs/usage/update-pm2/) 给出的标准流程来操作，保证 PM2 顺利升级，且不影响其所管理的项目。
 
 ---
 

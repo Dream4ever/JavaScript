@@ -6,6 +6,8 @@ PM2 不仅可以实现 Node.js 项目的持久化，还能实现代码的自动�
 
 每次升级 PM2 或者 Node.js 版本后，都要按文档 [Updating PM2](https://pm2.keymetrics.io/docs/usage/update-pm2/) 给出的标准流程来操作，保证不影响 PM2 所管理的项目。
 
+另外，如果 Windows 下的 Node.js 程序是用 [Windows: Auto start PM2 and node apps](https://stackoverflow.com/a/42770772/2667665) 这里说的方法做的持久化，那么在升级 PM2 之后，Node.js 程序的持久化有可能失效。这样的话，就需要按照这里说的方法，将作为服务启动的 PM2 删除并重新新建才行。
+
 ### 升级 PM2
 
 ```shell
